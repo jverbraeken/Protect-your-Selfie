@@ -9,7 +9,7 @@ In order to use this project you need to install [node and npm](https://nodejs.o
 [PostgreSQL](https://www.postgresql.org/download/).
 
 First create a new database for the project:
-```bash
+```
 $ psql
 ...
 postgres=# CREATE DATABASE database_name;
@@ -23,27 +23,27 @@ PORT=port number to run on (e.g. 7000)
 ```
 
 Then install the dependencies:
-```bash
+```
 $ npm install
 ```
 
 Then you can build the project using (you can omit `build` to watch for changes), if this doesn't work first use `npm install --global gulp`:
-```bash
+```
 $ gulp build
 ```
 
 Then you should initialize the database using:
-```bash
-$ psql DATABASE_NAME < db_init.sql
+```
+$ psql DATABASE_NAME < db_init.sql postgres
 ```
 
 Finally you can start the server locally using:
-```bash
+```
 $ heroku local web
 ```
 
 If you want to run the server without having to manually restart it, follow these steps:
-```bash
+```
 $ npm install --global nodemon
 ...
 $ heroku local dev
