@@ -5,13 +5,11 @@
   "author": "",
   "license": "MIT",
   "dependencies": {
-    "express": "^4.15.2",
+    "express": "^4.15.2"
+  },
+  "devDependencies": {
     "gulp": "^3.9.1",
     "gulp-browserify": "^0.5.1",
-    "gulp-rename": "^1.2.2",
-    "pg": "^6.1.5"
-  },
-  "scripts": {
-    "postinstall": "gulp build"
+    "gulp-rename": "^1.2.2"
   }
 }

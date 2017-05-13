@@ -10,7 +10,7 @@ module.exports = {
     var crypted = cipher.update(text,'utf8','hex')
     crypted += cipher.final('hex');
     return crypted;
-  }
+  },
 
   decrypt: function(text, password) {
     var decipher = crypto.createDecipher(algorithm,password)
