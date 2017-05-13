@@ -19,3 +19,14 @@ module.exports.upload = function(filename, body) {
 		s3.upload(params, (err, res) => err ? reject(err) : resolve(res.Location));
 	});
 };
+
+module.exports.download = function(filename) {
+	return new Promise((resolve, reject) => {
+		let params = {
+			Bucket: process.env.AWS_BUCKET_NAME,
+			Key: filename
+		};
+
+		s3.getObject(params, (err, res) => err ? reject(err) : resolve(res));
+	});
+};
