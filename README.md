@@ -4,21 +4,30 @@ Protect your own online self(ie).
 * * *
 
 # Using the project locally
-In order to use this project you need to install [node and npm](https://nodejs.org/en/) and the
-[Heroku toolbelt](https://devcenter.heroku.com/articles/heroku-cli).
+In order to use this project you need to install [node and npm](https://nodejs.org/en/),
+[Heroku toolbelt](https://devcenter.heroku.com/articles/heroku-cli) and
+[PostgreSQL](https://www.postgresql.org/download/).
 
-First you should create `.env` file in the root of the project with the following key-value pairs:
+First create a new database for the project:
+```bash
+$ psql
+...
+postgres=# CREATE DATABASE database_name;
 ```
+
+Then create `.env` file in the root of the project with the following key-value pairs:
+```
+DATABASE_URL=postgresql://USERNAME:PASSWORD@localhost/DB_NAME
 ENVIRONMENT="development" or "production"
 PORT=port number to run on
 ```
 
-First install the dependencies:
+Then install the dependencies:
 ```bash
 $ npm install
 ```
 
-Then you can build the project using (you can omit `build` to watch for change):
+Then you can build the project using (you can omit `build` to watch for changes):
 ```bash
 $ gulp build
 ```
