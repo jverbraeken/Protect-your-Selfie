@@ -17,9 +17,9 @@ postgres=# CREATE DATABASE database_name;
 
 Then create `.env` file in the root of the project with the following key-value pairs:
 ```
-DATABASE_URL=postgresql://USERNAME:PASSWORD@localhost/DB_NAME
-ENVIRONMENT="development" or "production"
-PORT=port number to run on
+DATABASE_URL=postgresql://USERNAME:PASSWORD@localhost/DATABASE_NAME
+ENVIRONMENT=development <OR> production
+PORT=port number to run on (e.g. 7000)
 ```
 
 Then install the dependencies:
@@ -27,14 +27,14 @@ Then install the dependencies:
 $ npm install
 ```
 
-Then you can build the project using (you can omit `build` to watch for changes):
+Then you can build the project using (you can omit `build` to watch for changes), if this doesn't work first use `npm install --global gulp`:
 ```bash
 $ gulp build
 ```
 
 Then you should initialize the database using:
 ```bash
-$ psql protect < db_init.sql
+$ psql DATABASE_NAME < db_init.sql
 ```
 
 Finally you can start the server locally using:
@@ -42,7 +42,7 @@ Finally you can start the server locally using:
 $ heroku local web
 ```
 
-If you want to run the server without having to manually restart it, follow:
+If you want to run the server without having to manually restart it, follow these steps:
 ```bash
 $ npm install --global nodemon
 ...
