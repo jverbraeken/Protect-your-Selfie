@@ -14,7 +14,7 @@ module.exports = app;
 //app.use(express.static(process.cwd() + '/public'));
 
 app.get('/', function(req, res) {
-	res.send("Hello World!");
+	res.send(key_generator.decrypt(key_generator.encrypt("test", "bliepebloep"), "bliepebloep"));
 })
 
 // Start the server

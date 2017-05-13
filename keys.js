@@ -1,7 +1,7 @@
 "use strict";
 var crypto = require('crypto');
-var sharedSecret = crypto.randomBytes(128);
-var initializationVector = crypto.randomBytes(16);
+var sharedSecret = crypto.randomBytes(256);
+var initializationVector = crypto.randomBytes(256);
 var algorithm = 'aes-256-ctr';
 
 module.exports = {
