@@ -15,8 +15,8 @@ module.exports.connect = function() {
 			postgres = client;
 		}
 	});
-}
+};
 
-module.export.get = function() {
+module.exports.get = function() {
 	return postgres;
 }
