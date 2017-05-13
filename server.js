@@ -17,6 +17,10 @@ app.get('/keys', function(req, res) {
 	res.send(key_generator.decrypt(key_generator.encrypt("test", "bliepebloep"), "bliepebloep"));
 })
 
+app.get('/dashboard', function(req, res) {
+	res.sendFile('dashboard.html', {root:'./public'});
+})
+
 // Start the server
 app.listen(process.env.PORT, function(err) {
 	if(err) {

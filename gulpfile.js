@@ -23,7 +23,7 @@ gulp.task('script', function() {
 gulp.task('watch-styles', ['styles'], () => gulp.watch('public/styles/*.css', ['styles']));
 gulp.task('styles', function() {
 	gulp.src([
-		'./public/css/*.css',
+		'./public/styles/*.css',
 		'./node_modules/bootstrap/dist/css/bootstrap.min.css' // Bootstrap
 	])
 		.pipe(concatCss('stylesheet.css', { rebaseUrls: false }))
