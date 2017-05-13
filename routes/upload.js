@@ -4,7 +4,8 @@ const express = require('express');
 const aws = require('../database/aws-files.js');
 
 let router = express.Router();
-
+const fileUpload = require('express-fileupload');
+router.use(fileUpload());
 
 router.get('/upload/:file/:data', function(req, res) {
 	aws.upload(req.params.file, req.params.data)
@@ -15,5 +16,8 @@ router.get('/upload/:file/:data', function(req, res) {
 		});
 });
 
+router.post('/uploadx', function(req, res) {
+  console.log(req.files); // the uploaded file object 
+});
 
 module.exports = router;
