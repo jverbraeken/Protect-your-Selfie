@@ -1,3 +1,5 @@
 "use strict"
 
-console.log('Hello world');
+const Vue = require('vue');
+
+console.log('Hello world, this is Vue:', Vue);
