@@ -41,3 +41,10 @@ Finally you can start the server locally using:
 ```bash
 $ heroku local web
 ```
+
+If you want to run the server without having to manually restart it, follow:
+```bash
+$ npm install --global nodemon
+...
+$ heroku local dev
+```
