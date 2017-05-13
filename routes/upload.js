@@ -6,8 +6,8 @@ const aws = require('../database/aws-files.js');
 let router = express.Router();
 
 
-router.get('/upload', function(req, res) {
-	aws.upload('test.txt', 'Hello world!')
+router.get('/upload/:file/:data', function(req, res) {
+	aws.upload(req.params.file, req.params.data)
 		.then(url => console.log(url))
 		.then(() => res.status(200).end('Success!'))
 		.catch(e => {
