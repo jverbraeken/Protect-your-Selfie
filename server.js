@@ -21,3 +21,8 @@ app.listen(process.env.port, function(err) {
 		console.log('Node app is running in', process.env.environment, 'mode on port:', process.env.port);
 	}
 });
+
+
+// Initialize the database
+const db = require('./database/db.js');
+db.connect();
