@@ -5,11 +5,16 @@
   "author": "",
   "license": "MIT",
   "dependencies": {
-    "express": "^4.15.2"
-  },
-  "devDependencies": {
+    "bootstrap": "^3.3.7",
+    "express": "^4.15.2",
     "gulp": "^3.9.1",
     "gulp-browserify": "^0.5.1",
-    "gulp-rename": "^1.2.2"
+    "gulp-concat-css": "^2.3.0",
+    "gulp-rename": "^1.2.2",
+    "pg": "^6.1.5",
+    "vue": "^1.0.20"
+  },
+  "scripts": {
+    "postinstall": "gulp build"
   }
 }

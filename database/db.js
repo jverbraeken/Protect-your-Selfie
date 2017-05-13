@@ -12,7 +12,6 @@ module.exports.connect = function() {
 		if(err) {
 			log.warn('PostgreSQL database not connected:', err);
 		} else {
-			console.log('hio');
 			postgres = client;
 		}
 	});
