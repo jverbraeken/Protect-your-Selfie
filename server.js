@@ -14,11 +14,11 @@ app.use(express.static(process.cwd() + '/public'));
 
 
 // Start the server
-app.listen(process.env.port, function(err) {
+app.listen(process.env.PORT, function(err) {
 	if(err) {
 		console.warn('SERVER DID NOT START:', err);
 	} else {
-		console.log('Node app is running in', process.env.environment, 'mode on port:', process.env.port);
+		console.log('Node app is running in', process.env.ENVIRONMENT, 'mode on port:', process.env.PORT);
 	}
 });
 

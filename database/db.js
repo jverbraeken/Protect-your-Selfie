@@ -8,7 +8,7 @@ var postgres;
 
 
 module.exports.connect = function() {
-	pg.connect(process.env.database_url, function(err, client, done) {
+	pg.connect(process.env.DATABASE_URL, function(err, client, done) {
 		if(err) {
 			log.warn('PostgreSQL database not connected:', err);
 		} else {
