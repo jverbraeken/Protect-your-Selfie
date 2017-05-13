@@ -27,15 +27,13 @@ app.get('/dashboard', function(req, res) {
 });
 
 // Start the server
-console.log(process.env.PORT);
 app.listen(process.env.PORT, function(err) {
 	if(err) {
 		console.warn('SERVER DID NOT START:', err);
 	} else {
 		console.log('Node app is running in', process.env.ENVIRONMENT, 'mode on port:', process.env.PORT);
-		console.log(key_generator.encrypt("test", "bliepebloep"));
 	}
 });
 
 const db = require('./database/db.js');
- db.connect();
+db.connect();

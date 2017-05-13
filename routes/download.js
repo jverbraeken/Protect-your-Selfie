@@ -9,10 +9,11 @@ let router = express.Router();
 router.get('/download/:file', function(req, res) {
 	aws.download(req.params.file)
 		.then(file => {
-			console.log(file);
-			return file;
+			res.setHeader('Content-disposition', 'attachment; filename=download.txt');
+			res.setHeader('Content-type', 'text/plain');
+			res.charset = 'UTF-8';
+			res.write(file).end();
 		})
-		.then(file => res.status(200).send(file))
 		.catch(e => {
 			res.status(418).end('Failed!');
 		});
