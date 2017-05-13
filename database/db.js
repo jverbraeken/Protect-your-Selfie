@@ -16,3 +16,7 @@ module.exports.connect = function() {
 		}
 	});
 }
+
+module.export.get = function() {
+	return postgres;
+}

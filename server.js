@@ -2,7 +2,8 @@
 
 
 const express = require('express');
-var key_generator = require('./keys.js')
+const key_generator = require('./keys.js');
+const magic = require('./magic.js');
 
 
 // Initialize an express app
@@ -35,6 +36,3 @@ app.listen(process.env.PORT, function(err) {
 		console.log(key_generator.encrypt("test", "bliepebloep"));
 	}
 });
-
-const db = require('./database/db.js');
- db.connect();
