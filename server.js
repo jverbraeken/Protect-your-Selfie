@@ -13,6 +13,14 @@ module.exports = app;
 app.use(express.static(process.cwd() + '/public'));
 
 
+// Example upload file
+const aws = require('./database/aws-files.js');
+app.get('/upload', function(req, res) {
+	aws().then(() => console.log('success')).catch(e => console.log('failure', e));
+})
+
+
+
 // Start the server
 app.listen(process.env.PORT, function(err) {
 	if(err) {
