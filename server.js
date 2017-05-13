@@ -11,19 +11,7 @@ module.exports = app;
 
 // Set static source for express
 app.use(express.static(process.cwd() + '/public'));
-
-
-// Example upload file
-const aws = require('./database/aws-files.js');
-app.get('/upload', function(req, res) {
-	aws('test.txt', 'Hello world!')
-		.then(url => console.log(url))
-		.then(() => res.status(200).end('Success!'))
-		.catch(e => {
-			res.status(418).end('Failed!');
-		});
-})
-
+app.use('/', require('./routes/bundle.js'));
 
 
 // Start the server

@@ -7,7 +7,7 @@ const crypto = require('crypto');
 let s3 = new AWS.S3({apiVersion: '2006-03-01'});
 
 
-module.exports = function(filename, body) {
+module.exports.upload = function(filename, body) {
 	return new Promise((resolve, reject) => {
 		let params = {
 			Bucket: process.env.AWS_BUCKET_NAME,
