@@ -2,4 +2,13 @@
 
 const Vue = require('vue');
 
-console.log('Hello world, this is Vue:', Vue);
+document.addEventListener('DOMContentLoaded', function() {
+
+	var app = new Vue({
+		el: '#app',
+		data: {
+			title: 'Hello Vue!',
+			text: 'Lorem ipsum dolor'
+		}
+	});
+});
