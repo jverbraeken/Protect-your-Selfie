@@ -13,7 +13,7 @@ module.exports = app;
 // Set static source for express
 app.use(express.static(process.cwd() + '/public'));
 
-app.get('/', function(req, res) {
+app.get('/keys', function(req, res) {
 	res.send(key_generator.decrypt(key_generator.encrypt("test", "bliepebloep"), "bliepebloep"));
 })
 
