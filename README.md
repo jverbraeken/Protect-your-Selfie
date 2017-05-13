@@ -32,6 +32,11 @@ Then you can build the project using (you can omit `build` to watch for changes)
 $ gulp build
 ```
 
+Then you should initialize the database using:
+```bash
+$ psql protect < db_init.sql
+```
+
 Finally you can start the server locally using:
 ```bash
 $ heroku local web
