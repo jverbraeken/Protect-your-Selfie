@@ -15,9 +15,8 @@ CREATE TABLE files (
 CREATE TABLE user_to_file (
 	file_owner			serial references users(id),
 	granted_user		serial references users(id),
-<<<<<<< HEAD
-	encrypted_key		varchar(255),
-	associated_file		serial references files(id)
+	associated_file		serial references files(id),
+	nonsense			varchar(1024)
 );
 
 CREATE TABLE views (
@@ -25,8 +24,4 @@ CREATE TABLE views (
 	file					serial references files(id),
 	viewed_by			serial references users(id),
 	date_viewed		timestamp
-=======
-	associated_file		serial references files(id),
-	nonsense			varchar(1024)
->>>>>>> master
-)
+);

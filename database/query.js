@@ -22,5 +22,14 @@ module.exports.getUserOwnFiles = function(id) {
 };
 
 module.exports.new_user = function(username_in, password_in) {
-  db.get().query("INSERT INTO users(username, password) VALUES ($1, $2)", [username_in, password_in]);
+  return new Promise((resolve, reject) => {
+    db.get().query("INSERT INTO users(username, password) VALUES ($1, $2)", [username_in, password_in], function(err, res) {
+      if (err) {
+        console.error(err);
+        return reject();
+      }
+
+      return resolve(res);
+    });
+  });
 }
