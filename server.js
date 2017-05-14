@@ -126,6 +126,14 @@ app.get('/oclientList', function(req, res) {
 	}
 });
 
+app.get('/oclientProfile', function(req, res) {
+	if(req.user && req.user.is_organization) {
+		res.sendFile('clientProfile.html', {root:'./public/organization'});
+	} else {
+		res.sendFile('index.html', {root:'./public'});
+	}
+});
+
 
 app.get('/new_user', function(req, res) {
 	query.new_user(req.query.username, req.query.password)
