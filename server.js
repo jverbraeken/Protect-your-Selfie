@@ -2,6 +2,7 @@
 
 const express = require('express');
 const db = require('./database/db.js');
+const query = require('./database/query.js');
 db.connect();
 
 
@@ -18,6 +19,11 @@ app.use('/', require('./routes/bundle.js'));
 // Simple routes
 app.get('/dashboard', function(req, res) {
 	res.sendFile('dashboard.html', {root:'./public'});
+});
+app.get('/getfilesforuser1', function(req, res) {
+	query.getUserOwnFiles(1)
+		.then(files => res.status(200).end(JSON.stringify(files)))
+		.catch(() => res.status(418).end());
 });
 
 
