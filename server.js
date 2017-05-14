@@ -26,6 +26,13 @@ app.get('/documents', function(req, res) {
 app.get('/uploading', function(req, res) {
 	res.sendFile('upload.html', {root:'./public/user'});
 });
+app.get('/userx', function(req, res) {
+	console.log("hier");
+	res.sendFile('user.html', {root:'./public/user'});
+});
+app.get('/viewer', function(req, res) {
+	res.sendFile('viewer.html', {root:'./public/user'});
+});
 
 app.get('/new_user', function(req, res) {
 	query.new_user(req.query.username, req.query.password)
