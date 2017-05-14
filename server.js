@@ -33,17 +33,19 @@ app.get('/dashboard', function(req, res) {
 	res.sendFile('dashboard.html', {root:'./public'});
 });
 
-app.get('/get_file', function(req, rs) {
+app.get('/get_file', function(req, res) {
 	magic.get_file("joost", "password", "31950dac942c90b96353955d8966", "secret", "file");
 });
 
+app.get('/get_files', function(req, res) {
+	magic.get_files("joost", "password");
+});
+
 // Start the server
-console.log(process.env.PORT);
 app.listen(process.env.PORT, function(err) {
 	if(err) {
 		console.warn('SERVER DID NOT START:', err);
 	} else {
 		console.log('Node app is running in', process.env.ENVIRONMENT, 'mode on port:', process.env.PORT);
-		console.log(key_generator.encrypt("test", "bliepebloep"));
 	}
 });

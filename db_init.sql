@@ -6,7 +6,8 @@ CREATE TABLE users (
 
 CREATE TABLE files (
 	id					serial PRIMARY KEY,
-	amazon_path			varchar(1024)
+	file_name			varchar(255),
+	amazon_file			varchar(255)
 );
 
 CREATE TABLE relations (
