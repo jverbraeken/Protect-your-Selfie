@@ -10,9 +10,9 @@ CREATE TABLE files (
 	amazon_file			varchar(255)
 );
 
-CREATE TABLE relations (
+CREATE TABLE user_to_file (
 	file_owner			serial references users(id),
 	granted_user		serial references users(id),
-	encrypted_key		varchar(1024),
-	associated_file		serial references files(id)
+	associated_file		serial references files(id),
+	nonsense			varchar(1024)
 )
