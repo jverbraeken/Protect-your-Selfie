@@ -44,7 +44,7 @@ gulp.task('styles', function() {
 	])
 		.pipe(concatCss('stylesheet.css', { rebaseUrls: false }))
 		.pipe(gulp.dest('./public/organization'));
-	gulp.src(['./public/users/styles/*.css'])
+	gulp.src(['./public/styles/*.css'])
 		.pipe(concatCss('stylesheet.css', { rebaseUrls: false }))
 		.pipe(gulp.dest('./public'));
 });
