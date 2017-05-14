@@ -11,7 +11,7 @@ gulp.task('build', ['script', 'styles']);
 gulp.task('default', ['watch-script', 'watch-styles']);
 
 
-gulp.task('watch-script', ['script'], () => gulp.watch('public/scripts/*.js', ['script']));
+gulp.task('watch-script', ['script'], () => gulp.watch('public/**/*.js', ['script']));
 gulp.task('script', function() {
 	gulp.src('public/organization/scripts/index.js')
 		.pipe(browserify({ insertGlobals: false }))
@@ -24,7 +24,7 @@ gulp.task('script', function() {
 });
 
 
-gulp.task('watch-styles', ['styles'], () => gulp.watch('public/styles/*.css', ['styles']));
+gulp.task('watch-styles', ['styles'], () => gulp.watch('public/**/*.css', ['styles']));
 gulp.task('styles', function() {
 	gulp.src([
 		'./public/user/styles/*.css',
