@@ -10,6 +10,7 @@ var app = new Vue({
 	methods: {
 		loadData: function() {
 			$.ajax({method: 'get', url: '/getOwnFiles?id=1'}).done(res => {
+				console.log(res);
 				let documents = JSON.parse(res);
 				console.log(documents);
 				this.documents = documents;

@@ -123,9 +123,9 @@
                                     </thead>
                                     <tbody v-if="documents.length > 0">
                                         <tr v-for="doc in documents">
-                                            <td>{{doc.name}}</td>
+                                            <td><a href="/download?id={{doc.id}}"><i class="pe-7s-download"></i> {{doc.name}}</a></td>
                                             <td>{{doc.description}}</td>
-                                            <td>{{doc.uploadDate}}</td>
+                                            <td>{{doc.date}}</td>
                                             <td>
                                                 <div class="flex-container" style="display: flex; flex-direction: row;">
                                                     <div class="flex-item">{{doc.access}}</div>

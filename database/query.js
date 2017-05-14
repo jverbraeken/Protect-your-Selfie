@@ -35,16 +35,12 @@ module.exports.getUserOtherFiles = function(id) {
   let postgres = db.get();
   return new Promise((resolve, reject) => {
     postgres.query(GET_USER_OTHER_FILES, [id], function(err, res) {
-      console.log(1);
       if(err) {
-        console.log(2);
         console.error(err);
         return reject();
       }
 
-        console.log(res.rows);
       let files = res.rows.map(file => ({id: file.id, name: file.name, description: file.description, type: file.type, timestamp: file.timestamp}));
-      console.log(files);
       resolve(files);
     });
   });
@@ -93,11 +89,6 @@ module.exports.grantUsersToFile = function(user_id, file_id, granted_user_ids, s
         const key = keys.decrypt(nonsense, secret);
         granted_user_ids[0].forEach(granted_user_id => {
           const new_nonsense = keys.encrypt(key, secret);
-          console.log(user_id);
-          console.log(granted_user_id);
-          console.log(file_id);
-          console.log(new_nonsense);
-          console.log('---')
           db.get().query(GRANT_USER_TO_FILE, [user_id, granted_user_id, file_id, new_nonsense]);
         });
       });
