@@ -1,11 +1,8 @@
 "use strict";
 
-
 const pg = require('pg');
 
-
 var postgres;
-
 
 module.exports.connect = function() {
 	pg.connect(process.env.DATABASE_URL, function(err, client, done) {
@@ -15,4 +12,8 @@ module.exports.connect = function() {
 			postgres = client;
 		}
 	});
-}
+};
+
+module.exports.get = function() {
+	return postgres;
+};

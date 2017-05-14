@@ -1,8 +1,6 @@
 "use strict";
-var crypto = require('crypto');
-var sharedSecret = crypto.randomBytes(256);
-var initializationVector = crypto.randomBytes(256);
-var algorithm = 'aes-256-ctr';
+const crypto = require('crypto');
+const algorithm = 'aes-256-ctr';
 
 module.exports = {
   encrypt : function(text, password) {
@@ -17,5 +15,13 @@ module.exports = {
     var dec = decipher.update(text,'hex','utf8')
     dec += decipher.final('utf8');
     return dec;
+  },
+
+  generate_key: function() {
+    return new Promise((resolve, reject) => {
+      crypto.randomBytes(128, function(err, buffer) {
+        resolve(buffer.toString('hex'));
+      })
+    })
   }
 }

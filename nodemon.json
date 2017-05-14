@@ -1,7 +1,8 @@
 {
   "verbose": true,
   "watch": [
-      "server.js",
-      "database/*.js"
+      "database/*.js",
+      "routes/*.js",
+      "server.js"
   ]
 }
