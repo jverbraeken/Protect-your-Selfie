@@ -7,7 +7,16 @@ document.addEventListener('DOMContentLoaded', function() {
 		el: '#app',
 		data: {
 			title: 'Hello Vue!',
-			text: 'Lorem ipsum dolor'
+			text: 'Lorem ipsum dolor',
+			filename: 'filename'
+		},
+		methods: {
+			showPopup: function() {
+				
+			}
 		}
 	});
+
+	console.log(window.url);
+	app.showPopup();
 });

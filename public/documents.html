@@ -32,7 +32,7 @@
 </head>
 <body>
 
-<div class="wrapper">
+<div class="wrapper" id="app">
     <div class="sidebar" data-color="blue" data-image="assets/img/sidebar-5.jpg">
 
     <!--   you can change the color of the sidebar using: data-color="blue | azure | green | orange | red | purple" -->
@@ -198,5 +198,30 @@
 	<!-- Light Bootstrap Table DEMO methods, don't include it in your project! -->
 	<script src="assets/js/demo.js"></script>
 
+    <script type="text/javascript">
+        $(document).ready(function(){
+            var splitURL = window.location.search.slice(1).split('&');
+            if(splitURL[0] == 'success=yes') {
+                $.notify({
+                    icon: 'pe-7s-like2',
+                    message: "Uploading " + splitURL[1].split('docname=')[1] + " was a success!"
+
+                },{
+                    type: 'info',
+                    timer: 4000
+                });
+            } else if(splitURL[0] == 'success=no') {
+                $.notify({
+                    icon: 'pe-7s-close-circle',
+                    message: "Uploading " + splitURL[1].split('docname=')[1] + " was a failure, please try again."
+
+                },{
+                    type: 'warning',
+                    timer: 4000
+                });
+            }
+
+        });
+    </script>
 
 </html>
