@@ -25,14 +25,16 @@ app.get('/generate_key', function(req, res) {
 	key_generator.generate_key().then(function(key) { res.send(key); });
 });
 
-app.get('/new_file', function(req, res) {
-	magic.new_file("joost", "key_to_encrypt", "secret", "file")
-		.then(() => res.status(200).end())
-		.catch(() => res.status(418).end());
+app.get('/new_file', function(req, rs) {
+	magic.new_file("joost", "password", "key_to_encrypt", "secret", "file");
 });
 
 app.get('/dashboard', function(req, res) {
 	res.sendFile('dashboard.html', {root:'./public'});
+});
+
+app.get('/get_file', function(req, res) {
+	magic.get_file("joost", "password", "31950dac942c90b96353955d8966", "secret", "file");
 });
 
 app.get('/get_files', function(req, res) {
