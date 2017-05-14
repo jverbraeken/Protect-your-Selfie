@@ -83,37 +83,44 @@ app.get('/viewero', function(req, res) {
 	}
 });
 
-app.get('/Odashboard', function(req, res) {
+app.get('/odashboard', function(req, res) {
 	if(req.user && req.user.is_organization) {
 		res.sendFile('dashboard.html', {root:'./public/organization'});
 	} else {
 		res.sendFile('index.html', {root:'./public'});
 	}
 });
-app.get('/Odocuments', function(req, res) {
+app.get('/odocuments', function(req, res) {
 	if(req.user && req.user.is_organization) {
 		res.sendFile('documents.html', {root:'./public/organization'});
 	} else {
 		res.sendFile('index.html', {root:'./public'});
 	}
 });
-app.get('/Ouploading', function(req, res) {
+app.get('/ouploading', function(req, res) {
 	if(req.user && req.user.is_organization) {
 		res.sendFile('upload.html', {root:'./public/organization'});
 	} else {
 		res.sendFile('index.html', {root:'./public'});
 	}
 });
-app.get('/Ouserx', function(req, res) {
+app.get('/ouserx', function(req, res) {
 	if(req.user && req.user.is_organization) {
 		res.sendFile('user.html', {root:'./public/organization'});
 	} else {
 		res.sendFile('index.html', {root:'./public'});
 	}
 });
-app.get('/Oviewer', function(req, res) {
+app.get('/oviewer', function(req, res) {
 	if(req.user && req.user.is_organization) {
 		res.sendFile('viewer.html', {root:'./public/organization'});
+	} else {
+		res.sendFile('index.html', {root:'./public'});
+	}
+});
+app.get('/oclientList', function(req, res) {
+	if(req.user && req.user.is_organization) {
+		res.sendFile('clientList.html', {root:'./public/organization'});
 	} else {
 		res.sendFile('index.html', {root:'./public'});
 	}
