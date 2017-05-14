@@ -21,7 +21,7 @@ module.exports.getUserOwnFiles = function(id) {
         return reject();
       }
 
-      let files = res.rows.map(file => ({id: file.id, name: file.file_name, amazon: file.amazon_file, description: file.description, date: date_uploaded}));
+      let files = res.rows.map(file => ({id: file.id, name: file.file_name, amazon: file.amazon_file, description: file.description, date: file.date_uploaded}));
       resolve(files);
     });
   });

@@ -9,9 +9,9 @@ var app = new Vue({
 	},
 	methods: {
 		loadData: function() {
-			$.ajax({method: 'get', url: '/getOwnFiles'}).done(res => {
+			$.ajax({method: 'get', url: '/getOwnFiles?id=1'}).done(res => {
 				let documents = JSON.parse(res);
-				console.log(documents.lenght);
+				console.log(documents);
 				this.documents = documents;
 			}).fail(e => {
 				console.log('failed', e);
