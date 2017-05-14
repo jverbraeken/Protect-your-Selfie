@@ -34,6 +34,24 @@ app.get('/viewer', function(req, res) {
 	res.sendFile('viewer.html', {root:'./public/user'});
 });
 
+
+app.get('/Odashboard', function(req, res) {
+	res.sendFile('dashboard.html', {root:'./public/organization'});
+});
+app.get('/Odocuments', function(req, res) {
+	res.sendFile('documents.html', {root:'./public/organization'});
+});
+app.get('/Ouploading', function(req, res) {
+	res.sendFile('upload.html', {root:'./public/organization'});
+});
+app.get('/Ouserx', function(req, res) {
+	console.log("hier");
+	res.sendFile('user.html', {root:'./public/organization'});
+});
+app.get('/Oviewer', function(req, res) {
+	res.sendFile('viewer.html', {root:'./public/organization'});
+});
+
 app.get('/new_user', function(req, res) {
 	query.new_user(req.query.username, req.query.password)
 		.then(() => res.status(200).end())

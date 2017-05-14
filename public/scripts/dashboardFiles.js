@@ -5,7 +5,7 @@ const Vue = require('vue');
 var app = new Vue({
 	el: '#dashboard-user-recently-viewed-files',
 	data: {
-		documents: []
+		files: []
 	},
 	methods: {
 		loadData: function() {
