@@ -7,13 +7,6 @@ const passport = require('passport');
 let router = express.Router();
 router.use(bodyParser.urlencoded({ extended: true }));
 
-// router.post('/login', function(req, res) {
-//     let username = req.body.username,
-//         password = req.body.password;
-//     console.log(username, password);
-//
-//     res.redirect('/dashboard');
-// });
 router.post('/login', passport.authenticate('local', function(err, user, info) {
 	if(user) {
 		req.logIn(user, function(err) {
