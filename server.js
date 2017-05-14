@@ -26,11 +26,15 @@ app.get('/generate_key', function(req, res) {
 });
 
 app.get('/new_file', function(req, rs) {
-	magic.new_file("joost", "key_to_encrypt", "secret", "file");
-})
+	magic.new_file("joost", "password", "key_to_encrypt", "secret", "file");
+});
 
 app.get('/dashboard', function(req, res) {
 	res.sendFile('dashboard.html', {root:'./public'});
+});
+
+app.get('/get_file', function(req, rs) {
+	magic.get_file("joost", "password", "31950dac942c90b96353955d8966", "secret", "file");
 });
 
 // Start the server
