@@ -14,7 +14,8 @@ router.post('/upload', function(req, res) {
     let filename = req.files.theFile.name,
         filecontent = req.files.theFile.data.toString();
     magic.createFile(filename, filecontent, 'eric', 'mysecret')
-        .then(() => res.redirect('/documents.html?success=yes&docname=' + req.files.theFile.name))
+        .then(new_filecontent => aws.upload(filename, new_filecontent))
+        .then(() => res.redirect('/documents.html?success=yes&docname=' + filename))
         .catch(e => {
             res.redirect('/documents.html?success=no&docname=' + req.files.theFile.name);
         });

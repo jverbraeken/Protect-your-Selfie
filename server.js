@@ -34,7 +34,7 @@ app.get('/dashboard', function(req, res) {
 });
 
 app.get('/get_file', function(req, res) {
-	magic.get_file("joost", "password", "31950dac942c90b96353955d8966", "secret", "file");
+	magic.getFile("test.txt", "eric", "mysecret");
 });
 
 app.get('/get_files', function(req, res) {
