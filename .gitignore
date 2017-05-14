@@ -7,4 +7,8 @@ node_modules
 # Generated
 public/script.js
 public/stylesheet.css
+public/organization/script.js
+public/organization/stylesheet.css
+public/user/script.js
+public/user/stylesheet.css
 testje.sql
