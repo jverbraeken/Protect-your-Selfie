@@ -18,8 +18,3 @@ var app = new Vue({
 		]
 	}
 });
-
-let table = document.getElementById("table_documents");
-request.get("/get_files").then(function(tmp) {
-	console.log(tmp);
-});

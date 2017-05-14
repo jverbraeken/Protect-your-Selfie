@@ -11,7 +11,10 @@ gulp.task('build', ['script', 'styles']);
 gulp.task('default', ['watch-script', 'watch-styles']);
 
 
-gulp.task('watch-script', ['script'], () => gulp.watch('public/**/*.js', ['script']));
+gulp.task('watch-script', ['script'], () => {
+	gulp.watch('public/organization/scripts/*.js', ['script']);
+	gulp.watch('public/user/scripts/*.js', ['script']);
+});
 gulp.task('script', function() {
 	gulp.src('public/organization/scripts/index.js')
 		.pipe(browserify({ insertGlobals: false }))
@@ -24,7 +27,10 @@ gulp.task('script', function() {
 });
 
 
-gulp.task('watch-styles', ['styles'], () => gulp.watch('public/**/*.css', ['styles']));
+gulp.task('watch-styles', ['styles'], () => {
+	gulp.watch('public/organization/styles/*.css', ['styles']);
+	gulp.watch('public/user/scripts/*.css', ['styles']);
+});
 gulp.task('styles', function() {
 	gulp.src([
 		'./public/user/styles/*.css',
@@ -38,4 +44,7 @@ gulp.task('styles', function() {
 	])
 		.pipe(concatCss('stylesheet.css', { rebaseUrls: false }))
 		.pipe(gulp.dest('./public/organization'));
+	gulp.src(['./public/styles/*.css'])
+		.pipe(concatCss('stylesheet.css', { rebaseUrls: false }))
+		.pipe(gulp.dest('./public'));
 });
