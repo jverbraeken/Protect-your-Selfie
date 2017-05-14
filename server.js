@@ -1,6 +1,7 @@
 "use strict";
 
 const express = require('express');
+const bodyParser = require('body-parser');
 const db = require('./database/db.js');
 const passport = require('passport');
 const query = require('./database/query.js');
@@ -15,6 +16,7 @@ module.exports = app;
 
 // Set static source for express
 app.use(express.static(process.cwd() + '/public'));
+app.use(bodyParser.urlencoded({ extended: false }));
 app.use('/', require('./routes/bundle.js'));
 app.use(session({
 	resave: true,
