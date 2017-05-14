@@ -13,6 +13,6 @@ CREATE TABLE files (
 CREATE TABLE relations (
 	file_owner			serial references users(id),
 	granted_user		serial references users(id),
-	encrypted_key		varchar(256),
+	encrypted_key		varchar(1024),
 	associated_file		serial references files(id)
 )

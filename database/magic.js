@@ -6,36 +6,49 @@ const crypto = require('crypto');
 
 let hash = crypto.createHash('sha256');
 
+const INSERT_FILE_QUERY = "INSERT INTO files(file_name, amazon_file) VALUES ($1, $2) RETURNING id";
+const INSERT_RELATION = "INSERT INTO relations VALUES ($1, $2, $3, $4)";
+const GET_USER_QUERY = "SELECT * FROM users WHERE username = $1";
+
 module.exports = {
-  new_file : function(username_in, password_in, key_to_encrypt, secret, file) {
-    return new Promise((resolve, reject) => {
-      const query1 = db.get().query("SELECT * FROM users WHERE username = $1", [username_in]);
-      query1.on('row', (row) => {
-        console.log("hoi5");
-        if (row.password === password_in) {
-          console.log("hoi");
-          let postgres = db.get();
-          let hash = crypto.createHash('sha256');
+    createFile: function(filename, filecontent, username, secret) {
+        let postgres = db.get();
+        return new Promise((resolve, reject) => {
+            let hash = crypto.createHash('sha256');
+            hash.update(username + filename);
 
-          hash.update(username_in + file);
+            key_generator.generate_key().then(key => {
+                let new_filename = hash.digest('hex');
+                let filecontentnew = key_generator.encrypt(filecontent, key);
+                let nonsense = key_generator.encrypt(key, secret);
 
-          const nonsense = key_generator.encrypt(key_to_encrypt, secret);
-          postgres.query("INSERT INTO files(file_name, amazon_file) VALUES ($1, $2) RETURNING id", ['filename', hash.digest('hex')], function(err, result) {
-            if(err) {
-              console.log("hoi3");
-                reject();
-            } else {
-              console.log("hoi2");
-                postgres.query("SELECT * FROM users WHERE username = 'joost'").on('row', (row) => {
-                    postgres.query("INSERT INTO relations VALUES ($1, $2, $3, $4)", [row.id, row.id, nonsense, result.rows[0].id]);
-                    resolve();
+                postgres.query(INSERT_FILE_QUERY, [filename, new_filename], function(err, res) {
+                    if(err) {
+                        console.error(err);
+                        return reject();
+                    }
+
+                    let file_id = res.rows[0].id;
+                    postgres.query(GET_USER_QUERY, [username], function(err, res) {
+                        if(err) {
+                            console.error(err);
+                            return reject();
+                        }
+
+                        let user_id = res.rows[0].id;
+                        postgres.query(INSERT_RELATION, [user_id, user_id, nonsense, file_id], function(err, res) {
+                            if(err) {
+                                console.error(err);
+                                return reject();
+                            }
+
+                            resolve();
+                        });
+                    });
                 });
-            }
-          });
-        }
-      });
-    });
-  },
+            });
+        });
+    },
 
   get_files: function(username_in, password_in) {
     return new Promise((resolve, reject) => {
