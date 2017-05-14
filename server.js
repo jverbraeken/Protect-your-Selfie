@@ -29,10 +29,14 @@ app.get('/new_file', function(req, res) {
 	magic.new_file("joost", "key_to_encrypt", "secret", "file")
 		.then(() => res.status(200).end())
 		.catch(() => res.status(418).end());
-})
+});
 
 app.get('/dashboard', function(req, res) {
 	res.sendFile('dashboard.html', {root:'./public'});
+});
+
+app.get('/get_files', function(req, res) {
+	magic.get_files("joost", "password");
 });
 
 // Start the server
