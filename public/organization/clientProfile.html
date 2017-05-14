@@ -47,25 +47,25 @@
 
             <ul class="nav">
                 <li>
-                    <a href="http://localhost:7000/organization/dashboard.html">
+                    <a href="organization/dashboard.html">
                         <i class="pe-7s-graph"></i>
                         <p>Dashboard</p>
                     </a>
                 </li>
                 <li>
-                    <a href="http://localhost:7000/organization/user.html">
+                    <a href="organization/user.html">
                         <i class="pe-7s-user"></i>
                         <p>Organization profile</p>
                     </a>
                 </li>
                 <li class="active">
-                    <a href="http://localhost:7000/organization/clientList.html">
+                    <a href="organization/clientList.html">
                         <i class="pe-7s-note2"></i>
                         <p>Client list</p>
                     </a>
                 </li>
                 <li>
-                    <a href="http://localhost:7000/organization/viewer.html">
+                    <a href="organization/viewer.html">
                         <i class="pe-7s-albums"></i>
                         <p>File History</p>
                     </a>
@@ -217,7 +217,7 @@
                 </div>
 
                 <div class="row">
-                    <div class="col-md-12">
+                    <div class="col-md-12" id="organization-files-of-customer">
                         <div class="card">
                             <div class="header">
                                 <h4 class="title">Files with access</h4>
@@ -225,29 +225,17 @@
                             <div class="content table-responsive table-full-width">
                                 <table class="table table-hover table-striped">
                                     <thead>
-                                        <th>Name</th>
                                         <th>Filename</th>
                                         <th>Description</th>
+                                        <th>File type</th>
                                         <th>Uploaded on</th>
                                     </thead>
                                     <tbody>
-                                        <tr>
-                                            <td><a href="#"><i class="pe-7s-download"></i> Payslip 24-02-17</a></td>
-                                            <td>payslip.pdf</td>
-                                            <td>Payslip of the second month of 2017</td>
-                                            <td>21-03-2017</td>
-                                        </tr>
-                                        <tr>
-                                            <td><a href="#"><i class="pe-7s-download"></i> Allergy test</a></td>
-                                            <td>39352935-test-allgm.csv</td>
-                                            <td>I did an allergy test on the 7th of May</td>
-                                            <td>16-06-2017</td>
-                                        </tr>
-                                        <tr>
-                                            <td><a href="#"><i class="pe-7s-download"></i> Dyslexia form</a></td>
-                                            <td>j292j602ksd042kjfa35.docx</td>
-                                            <td>For my dyslexia I have a special form</td>
-                                            <td>25-11-2016</td>
+                                        <tr v-for="file in files">
+                                            <td><a href="download?id={{file.id}}"><i class="pe-7s-download"></i>{{file.name}}</a></td>
+                                            <td>{{file.description}}</td>
+                                            <td>{{file.type}}</td>
+                                            <td>{{file.timestamp}}</td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -286,5 +274,6 @@
 
 	<!-- Light Bootstrap Table DEMO methods, don't include it in your project! -->
 	<script src="../assets/js/demo.js"></script>
+	<script src="../script.js"></script>
 
 </html>

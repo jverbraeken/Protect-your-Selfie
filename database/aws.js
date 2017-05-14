@@ -56,7 +56,7 @@ module.exports = {
                         return reject();
                     }
 
-                    let file_id = res.rows[0].id;
+                    let file_id = res.rows[0].id;console.log(username);
                     postgres.query(GET_USER_QUERY, [username], function(err, res) {
                         if(err) {
                             console.error(err);
