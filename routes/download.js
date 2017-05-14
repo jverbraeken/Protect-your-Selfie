@@ -1,14 +1,14 @@
 "use strict";
 
+const aws = require('../database/aws.js');
 const express = require('express');
-const magic = require('../database/magic.js');
 
 let router = express.Router();
 
 
 router.get('/download/:id', function(req, res) {
 	let file_id = req.params.id;
-	magic.getFile(file_id, "eric", "mysecret")
+	aws.getFile(file_id, "eric", "mysecret")
 		.then(file => {
 			res.setHeader('Content-disposition', 'attachment; filename=' + file.name);
 			res.setHeader('Content-type', 'text/plain');
