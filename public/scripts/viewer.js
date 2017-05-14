@@ -11,7 +11,6 @@ var app = new Vue({
 		loadData: function() {
 			$.ajax({method: 'get', url: '/getOwnFiles?id=1'}).done(res => {
 				let documents = JSON.parse(res);
-				console.log(documents);
 				this.documents = documents;
 			}).fail(e => {
 				console.log('failed', e);
