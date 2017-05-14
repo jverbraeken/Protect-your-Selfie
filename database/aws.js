@@ -80,36 +80,28 @@ module.exports = {
     getFile: function(file_id, username, secret) {
         let postgres = db.get();
         return new Promise((resolve, reject) => {
-            postgres.query(GET_USER_QUERY, [username], function(err, res) {
+            postgres.query(GET_FILE_QUERY, [file_id], function(err, res) {
                 if(err) {
                     console.error(err);
                     return reject();
                 }
 
-                let user_id = res.rows[0].id;
-                postgres.query(GET_FILE_QUERY, [file_id], function(err, res) {
+                let amazon_file = res.rows[0].amazon_file;
+                let file_name = res.rows[0].file_name;
+                postgres.query(GET_NONSENSE, [user_id, file_id], function(err, res) {
                     if(err) {
                         console.error(err);
                         return reject();
                     }
 
-                    let amazon_file = res.rows[0].amazon_file;
-                    let file_name = res.rows[0].file_name;
-                    postgres.query(GET_NONSENSE, [user_id, file_id], function(err, res) {
-                        if(err) {
-                            console.error(err);
-                            return reject();
-                        }
-
-                        let nonsense = res.rows[0].nonsense;
-                        let key = key_generator.decrypt(nonsense, secret);
-                        download(amazon_file)
-                            .then(file_content => key_generator.decrypt(file_content, key))
-                            .then(file_content => resolve({name: file_name, content: file_content}))
-                            .catch(reject);
-                    });
+                    let nonsense = res.rows[0].nonsense;
+                    let key = key_generator.decrypt(nonsense, secret);
+                    download(amazon_file)
+                        .then(file_content => key_generator.decrypt(file_content, key))
+                        .then(file_content => resolve({name: file_name, content: file_content}))
+                        .catch(reject);
                 });
             });
-        });
+				});
     }
 }
