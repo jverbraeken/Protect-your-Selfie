@@ -21,7 +21,7 @@ module.exports.authenticateUser = function(username, password) {
 
       if(user.password === password) {
         console.log('correct password');
-        return resolve();
+        return resolve(user);
       } else {
         console.warn('incorrect password');
         return reject();

@@ -8,7 +8,7 @@ const db = require('./database/users.js');
 passport.use(
 	new LocalStrategy(function(username, password, done) {
     db.authenticateUser(username, password)
-      .then(() => done(null, { username: username, password: password }, 'success'))
+      .then(user => done(null, user, 'success'))
       .catch(() => done(undefined, false, {}));
 	})
 );
