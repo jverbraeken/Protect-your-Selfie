@@ -36,43 +36,41 @@
         <div class="sidebar" data-color="blue" data-image="assets/img/sidebar-5.jpg">
 
             <!--   you can change the color of the sidebar using: data-color="blue | azure | green | orange | red | purple" -->
-
-
-            <div class="sidebar-wrapper">
-                <div class="logo">
-                    <a href="#" class="simple-text">
-                        Protectyourselfie
-                    </a>
-                </div>
-
-                <ul class="nav">
-                    <li>
-                        <a href="dashboard.html">
-                            <i class="pe-7s-graph"></i>
-                            <p>Dashboard</p>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="user.html">
-                            <i class="pe-7s-user"></i>
-                            <p>User Profile</p>
-                        </a>
-                    </li>
-                    <li class="active">
-                        <a href="documents.html">
-                            <i class="pe-7s-note2"></i>
-                            <p>Documents</p>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="viewer.html">
-                            <i class="pe-7s-albums"></i>
-                            <p>File History</p>
-                        </a>
-                    </li>
-                </ul>
+    	<div class="sidebar-wrapper">
+            <div class="logo">
+                <a href="#" class="simple-text">
+                    Protectyourselfie
+                </a>
             </div>
-        </div>
+
+            <ul class="nav">
+                <li>
+                    <a href="dashboard">
+                        <i class="pe-7s-graph"></i>
+                        <p>Dashboard</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="userx">
+                        <i class="pe-7s-user"></i>
+                        <p>User Profile</p>
+                    </a>
+                </li>
+                <li class="active">
+                    <a href="documents">
+                        <i class="pe-7s-note2"></i>
+                        <p>Documents</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="viewer">
+                        <i class="pe-7s-albums"></i>
+                        <p>File History</p>
+                    </a>
+                </li>
+            </ul>
+    	</div>
+    </div>
 
         <div class="main-panel">
           <nav class="navbar navbar-default navbar-fixed">
@@ -115,7 +113,6 @@
                             <div class="content table-responsive table-full-width">
                                 <table class="table table-hover table-striped">
                                     <thead>
-                                        <th>Name</th>
                                         <th>Filename</th>
                                         <th>Description</th>
                                         <th>Uploaded on</th>
@@ -124,31 +121,30 @@
                                     <tbody v-if="documents.length > 0">
                                         <tr v-for="doc in documents">
                                             <td>{{doc.name}}</td>
-                                            <td>{{doc.filename}}</td>
                                             <td>{{doc.description}}</td>
                                             <td>{{doc.uploadDate}}</td>
                                             <td>{{doc.access}}</td>
                                             <td>
-                                    <div class="flex-container" style="display: flex; flex-direction: row;">
-                                        <div class="flex-item">TU Delft, Huisarts van Oord</div>
-                                            <div class="flex-item container" style=" margin-top: -4px; width:50px;">
-                                              <div class="row">
-                                                 <div class="col-lg-12">
-                                                    <div class="button-group">
-                                                        <button type="button" class="btn btn-default btn-sm dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-cog"></span> <span class="caret"></span></button>
-                                                        <ul class="dropdown-menu">
-                                                          <li><a href="#" class="small" data-value="Aegon" tabIndex="-1"><input type="checkbox"/>&nbsp;Aegon</a></li>
-                                                          <li><a href="#" class="small" data-value="Spaarne ziekenhuis" tabIndex="-1"><input type="checkbox"/>&nbsp;Spaarne ziekenhuis</a></li>
-                                                          <li><a href="#" class="small" data-value="Huisarts van Oord" tabIndex="-1"><input type="checkbox"/>&nbsp;Huisarts van Oord</a></li>
-                                                          <li><a href="#" class="small" data-value="TU Delft" tabIndex="-1"><input type="checkbox"/>&nbsp;TU Delft</a></li>
-                                                          <li><a href="#" class="small" data-value="NS" tabIndex="-1"><input type="checkbox"/>&nbsp;NS</a></li>
-                                                      </ul>
+                                                <div class="flex-container" style="display: flex; flex-direction: row;">
+                                                    <div class="flex-item">TU Delft, Huisarts van Oord</div>
+                                                        <div class="flex-item container" style=" margin-top: -4px; width:50px;">
+                                                          <div class="row">
+                                                             <div class="col-lg-12">
+                                                                <div class="button-group">
+                                                                    <button type="button" class="btn btn-default btn-sm dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-cog"></span> <span class="caret"></span></button>
+                                                                    <ul class="dropdown-menu">
+                                                                      <li><a href="#" class="small" data-value="Aegon" tabIndex="-1"><input type="checkbox"/>&nbsp;Aegon</a></li>
+                                                                      <li><a href="#" class="small" data-value="Spaarne ziekenhuis" tabIndex="-1"><input type="checkbox"/>&nbsp;Spaarne ziekenhuis</a></li>
+                                                                      <li><a href="#" class="small" data-value="Huisarts van Oord" tabIndex="-1"><input type="checkbox"/>&nbsp;Huisarts van Oord</a></li>
+                                                                      <li><a href="#" class="small" data-value="TU Delft" tabIndex="-1"><input type="checkbox"/>&nbsp;TU Delft</a></li>
+                                                                      <li><a href="#" class="small" data-value="NS" tabIndex="-1"><input type="checkbox"/>&nbsp;NS</a></li>
+                                                                  </ul>
+                                                                </div>
+                                                            </div>
+                                                        </div>
                                                     </div>
                                                 </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </td>
+                                            </td>
                                         </tr>
                                     </tbody>
                                     <tbody v-else>
