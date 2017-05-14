@@ -69,5 +69,9 @@ module.exports = {
         }
       });
     });
+  },
+
+  new_user : function(username_in, password_in) {
+    db.get().query("INSERT INTO users(username, password) VALUES ($1, $2)", [username_in, password_in]);
   }
 }
