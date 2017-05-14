@@ -47,25 +47,25 @@
 
             <ul class="nav">
                 <li>
-                    <a href="dashboard.html">
+                    <a href="dashboard">
                         <i class="pe-7s-graph"></i>
                         <p>Dashboard</p>
                     </a>
                 </li>
                 <li>
-                    <a href="user.html">
+                    <a href="user">
                         <i class="pe-7s-user"></i>
                         <p>Organization Profile</p>
                     </a>
                 </li>
                 <li class="active">
-                    <a href="documents.html">
+                    <a href="documents">
                         <i class="pe-7s-note2"></i>
                         <p>Documents</p>
                     </a>
                 </li>
                 <li>
-                    <a href="viewer.html">
+                    <a href="viewer">
                         <i class="pe-7s-albums"></i>
                         <p>File History</p>
                     </a>
@@ -89,7 +89,7 @@
                 <div class="collapse navbar-collapse">
                     <ul class="nav navbar-nav navbar-right">
                         <li id="upload-button">
-                           <a href="/upload.html">
+                           <a href="/uploading">
                                <p>Upload document</p>
                             </a>
                         </li>
@@ -106,7 +106,7 @@
 
         <div class="content">
             <div class="container-fluid">
-                <div class="row">
+                <div class="row" id="documentListTable">
                     <div class="col-md-12">
                         <div class="card">
                             <div class="header">
@@ -123,25 +123,11 @@
                                     </thead>
                                     <tbody>
                                         <tr>
-                                            <td>Payslip 24-02-17</td>
-                                        	<td>payslip.pdf</td>
-                                            <td>Payslip of the second month of 2017</td>
-                                        	<td>21-03-2017</td>
-                                        	<td>Aegon</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Allergy test</td>
-                                            <td>39352935-test-allgm.csv</td>
-                                            <td>I did an allergy test on the 7th of May</td>
-                                            <td>16-06-2017</td>
-                                            <td>Het Spaarne ziekenhuis, Huisarts Van Oord</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Dyslexia form</td>
-                                            <td>j292j602ksd042kjfa35.docx</td>
-                                            <td>For my dyslexia I have a special form</td>
-                                            <td>25-11-2016</td>
-                                            <td>TU Delft, Huisarts Van Oord</td>
+                                            <td>{{name}}</td>
+                                        	<td>{{filename}}</td>
+                                            <td>{{description}}</td>
+                                        	<td>{{uploadDate}}</td>
+                                        	<td>{{access}}</td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -211,5 +197,7 @@
         d.classList.toggle('shown');
         });
     </script>
+
+    <script src="script.js"></script>
 
 </html>

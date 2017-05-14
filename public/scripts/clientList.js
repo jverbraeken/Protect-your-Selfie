@@ -28,11 +28,5 @@ var app = new Vue({
 				dateSince: "19-04-2017"
 			}
 		]
-	},
-	methods: {
-		showPopup: function() {
-			
-		}
 	}
 });
-console.log(app.clients)

@@ -30,7 +30,41 @@ app.get('/', function(req, res) {
 	res.sendFile('login.html', {root:'./public'});
 });
 app.get('/dashboard', function(req, res) {
-	res.sendFile('dashboard.html', {root:'./public'});
+	res.sendFile('dashboard.html', {root:'./public/user'});
+});
+app.get('/documents', function(req, res) {
+	res.sendFile('documents.html', {root:'./public/user'});
+});
+app.get('/uploading', function(req, res) {
+	res.sendFile('upload.html', {root:'./public/user'});
+});
+app.get('/userx', function(req, res) {
+	console.log("hier");
+	res.sendFile('user.html', {root:'./public/user'});
+});
+app.get('/viewer', function(req, res) {
+	res.sendFile('viewer.html', {root:'./public/user'});
+});
+app.get('/viewero', function(req, res) {
+	res.sendFile('viewer.html', {root:'./public/organization'});
+});
+
+
+app.get('/Odashboard', function(req, res) {
+	res.sendFile('dashboard.html', {root:'./public/organization'});
+});
+app.get('/Odocuments', function(req, res) {
+	res.sendFile('documents.html', {root:'./public/organization'});
+});
+app.get('/Ouploading', function(req, res) {
+	res.sendFile('upload.html', {root:'./public/organization'});
+});
+app.get('/Ouserx', function(req, res) {
+	console.log("hier");
+	res.sendFile('user.html', {root:'./public/organization'});
+});
+app.get('/Oviewer', function(req, res) {
+	res.sendFile('viewer.html', {root:'./public/organization'});
 });
 
 app.get('/new_user', function(req, res) {
