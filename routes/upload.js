@@ -1,19 +1,22 @@
 "use strict";
 
+const aws = require('../database/aws.js');
 const express = require('express');
-const aws = require('../database/aws-files.js');
+const fileUpload = require('express-fileupload');
+
 
 let router = express.Router();
+router.use(fileUpload());
 
 
-router.get('/upload/:file/:data', function(req, res) {
-	aws.upload(req.params.file, req.params.data)
-		.then(url => console.log(url))
-		.then(() => res.status(200).end('Success!'))
-		.catch(e => {
-			res.status(418).end('Failed!');
-		});
+router.post('/upload', function(req, res) {
+    let filename = req.files.theFile.name,
+        filecontent = req.files.theFile.data.toString();
+    aws.createFile(filename, filecontent, 'eric', 'mysecret')
+        .then(() => res.redirect('/documents.html?success=yes&docname=' + filename))
+        .catch(e => {
+            res.redirect('/documents.html?success=no&docname=' + req.files.theFile.name);
+        });
 });
-
 
 module.exports = router;
