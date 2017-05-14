@@ -1,20 +1,34 @@
+"use strict";
+
 const db = require('./db.js');
 const key_generator = require('../keys.js');
+const crypto = require('crypto');
+
+let hash = crypto.createHash('sha256');
 
 module.exports = {
-  new_file : function(username_in, key_to_encrypt, secret, file) {
-    const nonsense = key_generator.encrypt(key_to_encrypt, secret);
-    console.log("1");
-    const query1 = db.get().query("INSERT INTO files(amazon_path) VALUES ($1) RETURNING id", ["test"], function(err, result) {
-      const query2 = db.get().query("SELECT * FROM users WHERE username = 'joost'");
-      query2.on('row', (row) => {
-        console.log("3");
-        db.get().query("INSERT INTO relations VALUES ($1, $2, $3, $4)", [row.id, row.id, nonsense, result.rows[0].id]);
-      });
-    });
-  },
+    new_file: function(username_in, key_to_encrypt, secret, file) {
+        return new Promise((resolve, reject) => {
+            let postgres = db.get();
+            let hash = crypto.createHash('sha256');
 
-  get_files : function(username_in, password_in) {
+            hash.update(username_in + file);
+
+            let nonsense = key_generator.encrypt(key_to_encrypt, secret);
+            postgres.query("INSERT INTO files(file_name, amazon_file) VALUES ($1, $2) RETURNING id", ['filename', hash.digest('hex')], function(err, result) {
+                if(err) {
+                    reject();
+                } else {
+                    postgres.query("SELECT * FROM users WHERE username = 'joost'").on('row', (row) => {
+                        postgres.query("INSERT INTO relations VALUES ($1, $2, $3, $4)", [row.id, row.id, nonsense, result.rows[0].id]);
+                        resolve();
+                    });
+                }
+            });
+        });
+    },
+
+  get_files: function(username_in, password_in) {
     return new Promise((resolve, reject) => {
       const query1 = db.get().query("SELECT * FROM users WHERE username = $1", [username_in]);
       query1.on('row', (row) => {

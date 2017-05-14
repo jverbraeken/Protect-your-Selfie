@@ -25,8 +25,10 @@ app.get('/generate_key', function(req, res) {
 	key_generator.generate_key().then(function(key) { res.send(key); });
 });
 
-app.get('/new_file', function(req, rs) {
-	magic.new_file("joost", "key_to_encrypt", "secret", "file");
+app.get('/new_file', function(req, res) {
+	magic.new_file("joost", "key_to_encrypt", "secret", "file")
+		.then(() => res.status(200).end())
+		.catch(() => res.status(418).end());
 });
 
 app.get('/dashboard', function(req, res) {
@@ -38,12 +40,10 @@ app.get('/get_files', function(req, res) {
 });
 
 // Start the server
-console.log(process.env.PORT);
 app.listen(process.env.PORT, function(err) {
 	if(err) {
 		console.warn('SERVER DID NOT START:', err);
 	} else {
 		console.log('Node app is running in', process.env.ENVIRONMENT, 'mode on port:', process.env.PORT);
-		console.log(key_generator.encrypt("test", "bliepebloep"));
 	}
 });
