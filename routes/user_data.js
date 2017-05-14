@@ -16,11 +16,11 @@ router.get('/getOtherFiles', function(req, res) {
 
 router.get('/getAllUsers', function(req, res) {
   query.getAllUsers();
-})
+});
 
 router.post('/grantUsersToFile', function(req, res) {
   query.grantUsersToFile(req.query.user_id, req.query.file_id, req.query.granted_user_ids, "remove this");
-})
+});
 
 
 module.exports = router;
