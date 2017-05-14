@@ -89,7 +89,7 @@
                 <div class="collapse navbar-collapse">
                     <ul class="nav navbar-nav navbar-right">
                         <li id="upload-button">
-                           <a href="/upload.html">
+                           <a href="/uploading">
                                <p>Upload document</p>
                             </a>
                         </li>
@@ -121,7 +121,7 @@
                                         <th>Uploaded on</th>
                                         <th>Who has access</th>
                                     </thead>
-                                    <tbody>
+                                    <tbody v-if="documents.length > 0">
                                         <tr v-for="doc in documents">
                                             <td>{{doc.name}}</td>
                                             <td>{{doc.filename}}</td>
@@ -130,8 +130,16 @@
                                             <td>{{doc.access}}</td>
                                         </tr>
                                     </tbody>
+                                    <tbody v-else>
+                                        <tr>
+                                            <td>Nothing found</td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                        </tr>
+                                    </tbody>
                                 </table>
-
                             </div>
                         </div>
                     </div>
