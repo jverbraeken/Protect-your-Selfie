@@ -4,7 +4,7 @@ const db = require('./db.js');
 const keys = require("../keys.js");
 
 const GET_USER_OWN_FILES = "SELECT id, file_name, amazon_file, description, date_uploaded FROM files WHERE id IN (SELECT associated_file FROM user_to_file WHERE file_owner = $1)"
-const GET_USER_OTHER_FILES = "SELECT id, file_name, amazon_file, description, date_uploaded FROM files WHERE id IN (SELECT associated_file FROM user_to_file WHERE granted_user = $1)"
+const GET_USER_OTHER_FILES = "SELECT id, file_name AS name, description, RIGHT(file_name, 3) AS type, date_uploaded AS timestamp FROM files WHERE id IN (SELECT associated_file FROM user_to_file WHERE granted_user = $1)"
 const ADD_NEW_VIEW = "INSERT INTO views(file, viewed_by, date_viewed) VALUES ($1, $2, $3)";
 const GET_FILE = "SELECT amazon_file FROM files WHERE file_name = $1";
 const GET_ALL_USERS = "SELECT id, name FROM users";
@@ -35,12 +35,16 @@ module.exports.getUserOtherFiles = function(id) {
   let postgres = db.get();
   return new Promise((resolve, reject) => {
     postgres.query(GET_USER_OTHER_FILES, [id], function(err, res) {
+      console.log(1);
       if(err) {
+        console.log(2);
         console.error(err);
         return reject();
       }
 
-      let files = res.rows.map(file => ({id: file.id, name: file.file_name, amazon: file.amazon_file, description: file.description, date: date_uploaded}));
+        console.log(res.rows);
+      let files = res.rows.map(file => ({id: file.id, name: file.name, description: file.description, type: file.type, timestamp: file.timestamp}));
+      console.log(files);
       resolve(files);
     });
   });
