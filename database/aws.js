@@ -7,6 +7,7 @@ const AWS = require('aws-sdk');
 
 const INSERT_FILE_QUERY = "INSERT INTO files(file_name, amazon_file) VALUES ($1, $2) RETURNING id";
 const INSERT_USERTOFILE = "INSERT INTO user_to_file VALUES ($1, $2, $3, $4)";
+const INSERT_VIEWED = "INSERT INTO views(file, viewed_by, date_viewed) VALUES ($1, $2, $3)";
 const GET_FILE_QUERY = "SELECT * FROM files WHERE id = $1";
 const GET_USER_QUERY = "SELECT * FROM users WHERE username = $1";
 const GET_NONSENSE = "SELECT * FROM user_to_file WHERE granted_user = $1 AND associated_file = $2";
@@ -77,9 +78,10 @@ module.exports = {
         });
     },
 
-    getFile: function(file_id, username, secret) {
+    getFile: function(file_id, id, secret) {
         let postgres = db.get();
         return new Promise((resolve, reject) => {
+						postgres.query(INSERT_VIEWED, [file_id, id, new Date()]);
             postgres.query(GET_FILE_QUERY, [file_id], function(err, res) {
                 if(err) {
                     console.error(err);

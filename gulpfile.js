@@ -16,7 +16,7 @@ gulp.task('script', function() {
 	gulp.src('public/scripts/index.js')
 		.pipe(browserify({ insertGlobals: false }))
 		.pipe(rename('script.js'))
-		.pipe(gulp.dest('./public'));
+		.pipe(gulp.dest('./public'));	
 });
 
 

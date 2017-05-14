@@ -1,7 +1,9 @@
 CREATE TABLE users (
 	id					serial PRIMARY KEY,
+	name					varchar(80),
 	username			varchar(80),
-	password			varchar(80)
+	password			varchar(80),
+	is_organization boolean
 );
 
 CREATE TABLE files (
@@ -24,4 +26,9 @@ CREATE TABLE views (
 	file					serial references files(id),
 	viewed_by			serial references users(id),
 	date_viewed		timestamp
+);
+
+CREATE TABLE user_to_organization (
+	user_id				serial references users(id),
+	organization	serial references users(id)
 );
