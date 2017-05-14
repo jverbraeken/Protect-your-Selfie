@@ -18,7 +18,13 @@ app.use('/', require('./routes/bundle.js'));
 
 // Simple routes
 app.get('/dashboard', function(req, res) {
-	res.sendFile('dashboard.html', {root:'./public'});
+	res.sendFile('dashboard.html', {root:'./public/user'});
+});
+app.get('/documents', function(req, res) {
+	res.sendFile('documents.html', {root:'./public/user'});
+});
+app.get('/uploading', function(req, res) {
+	res.sendFile('upload.html', {root:'./public/user'});
 });
 
 app.get('/new_user', function(req, res) {

@@ -11,40 +11,21 @@ gulp.task('build', ['script', 'styles']);
 gulp.task('default', ['watch-script', 'watch-styles']);
 
 
-gulp.task('watch-script', ['script'], () => {
-	gulp.watch('public/organization/scripts/*.js', ['script']);
-	gulp.watch('public/user/scripts/*.js', ['script']);
-});
+gulp.task('watch-script', ['script'], () => gulp.watch('public/scripts/*.js', ['script']));
 gulp.task('script', function() {
-	gulp.src('public/organization/scripts/index.js')
+	gulp.src('public/scripts/index.js')
 		.pipe(browserify({ insertGlobals: false }))
 		.pipe(rename('script.js'))
-		.pipe(gulp.dest('./public/organization'));
-	gulp.src('public/user/scripts/index.js')
-		.pipe(browserify({ insertGlobals: false }))
-		.pipe(rename('script.js'))
-		.pipe(gulp.dest('./public/user'));
+		.pipe(gulp.dest('./public'));	
 });
 
 
-gulp.task('watch-styles', ['styles'], () => {
-	gulp.watch('public/organization/styles/*.css', ['styles']);
-	gulp.watch('public/user/scripts/*.css', ['styles']);
-});
+gulp.task('watch-styles', ['styles'], () => gulp.watch('public/styles/*.css', ['styles']));
 gulp.task('styles', function() {
 	gulp.src([
-		'./public/user/styles/*.css',
+		'./public/styles/*.css',
 		'./node_modules/bootstrap/dist/css/bootstrap.min.css' // Bootstrap
 	])
-		.pipe(concatCss('stylesheet.css', { rebaseUrls: false }))
-		.pipe(gulp.dest('./public/user'));
-	gulp.src([
-		'./public/organization/styles/*.css',
-		'./node_modules/bootstrap/dist/css/bootstrap.min.css' // Bootstrap
-	])
-		.pipe(concatCss('stylesheet.css', { rebaseUrls: false }))
-		.pipe(gulp.dest('./public/organization'));
-	gulp.src(['./public/styles/*.css'])
 		.pipe(concatCss('stylesheet.css', { rebaseUrls: false }))
 		.pipe(gulp.dest('./public'));
 });

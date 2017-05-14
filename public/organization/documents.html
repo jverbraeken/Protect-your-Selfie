@@ -106,7 +106,7 @@
 
         <div class="content">
             <div class="container-fluid">
-                <div class="row">
+                <div class="row" id="documentListTable">
                     <div class="col-md-12">
                         <div class="card">
                             <div class="header">
@@ -123,25 +123,11 @@
                                     </thead>
                                     <tbody>
                                         <tr>
-                                            <td>Payslip 24-02-17</td>
-                                        	<td>payslip.pdf</td>
-                                            <td>Payslip of the second month of 2017</td>
-                                        	<td>21-03-2017</td>
-                                        	<td>Aegon</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Allergy test</td>
-                                            <td>39352935-test-allgm.csv</td>
-                                            <td>I did an allergy test on the 7th of May</td>
-                                            <td>16-06-2017</td>
-                                            <td>Het Spaarne ziekenhuis, Huisarts Van Oord</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Dyslexia form</td>
-                                            <td>j292j602ksd042kjfa35.docx</td>
-                                            <td>For my dyslexia I have a special form</td>
-                                            <td>25-11-2016</td>
-                                            <td>TU Delft, Huisarts Van Oord</td>
+                                            <td>{{name}}</td>
+                                        	<td>{{filename}}</td>
+                                            <td>{{description}}</td>
+                                        	<td>{{uploadDate}}</td>
+                                        	<td>{{access}}</td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -211,5 +197,7 @@
         d.classList.toggle('shown');
         });
     </script>
+
+    <script src="script.js"></script>
 
 </html>

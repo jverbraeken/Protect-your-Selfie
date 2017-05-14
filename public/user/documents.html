@@ -89,7 +89,7 @@
                 <div class="collapse navbar-collapse">
                     <ul class="nav navbar-nav navbar-right">
                         <li id="upload-button">
-                           <a href="/upload.html">
+                           <a href="/uploading">
                                <p>Upload document</p>
                             </a>
                         </li>
@@ -106,46 +106,40 @@
 
         <div class="content">
             <div class="container-fluid">
-                <div class="row">
+                <div class="row" id="documentListTable">
                     <div class="col-md-12">
                         <div class="card">
                             <div class="header">
                                 <h4 class="title">List of uploaded documents</h4>
                             </div>
                             <div class="content table-responsive table-full-width">
-                                <table class="table table-hover table-striped" id="table_documents">
+                                <table class="table table-hover table-striped">
                                     <thead>
                                         <th>Name</th>
                                         <th>Filename</th>
                                         <th>Description</th>
-                                    	<th>Uploaded on</th>
-                                    	<th>Who has access</th>
+                                        <th>Uploaded on</th>
+                                        <th>Who has access</th>
                                     </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td>Payslip 24-02-17</td>
-                                        	<td>payslip.pdf</td>
-                                            <td>Payslip of the second month of 2017</td>
-                                        	<td>21-03-2017</td>
-                                        	<td>Aegon</td>
+                                    <tbody v-if="documents.length > 0">
+                                        <tr v-for="doc in documents">
+                                            <td>{{doc.name}}</td>
+                                            <td>{{doc.filename}}</td>
+                                            <td>{{doc.description}}</td>
+                                            <td>{{doc.uploadDate}}</td>
+                                            <td>{{doc.access}}</td>
                                         </tr>
+                                    </tbody>
+                                    <tbody v-else>
                                         <tr>
-                                            <td>Allergy test</td>
-                                            <td>39352935-test-allgm.csv</td>
-                                            <td>I did an allergy test on the 7th of May</td>
-                                            <td>16-06-2017</td>
-                                            <td>Het Spaarne ziekenhuis, Huisarts Van Oord</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Dyslexia form</td>
-                                            <td>j292j602ksd042kjfa35.docx</td>
-                                            <td>For my dyslexia I have a special form</td>
-                                            <td>25-11-2016</td>
-                                            <td>TU Delft, Huisarts Van Oord</td>
+                                            <td>Nothing found</td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
                                         </tr>
                                     </tbody>
                                 </table>
-
                             </div>
                         </div>
                     </div>
