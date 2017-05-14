@@ -9,11 +9,18 @@ let router = express.Router();
 router.post('/login', function(req, res, next) {
 	passport.authenticate('local', function(err, user, info) {
 		if(user) {
-			if(user.is_organization) {
-				res.redirect('/odashboard');
-			} else {
-				res.redirect('/dashboard')
-			}
+			req.logIn(user, function(err) {
+				if(err) {
+					console.error('session failed', err);
+					return res.redirect('/');
+				}
+
+				if(user.is_organization) {
+					res.redirect('/odashboard');
+				} else {
+					res.redirect('/dashboard')
+				}
+			});
 		} else {
 			res.redirect('/');
 		}
