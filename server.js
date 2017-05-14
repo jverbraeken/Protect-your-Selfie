@@ -38,7 +38,7 @@ app.get('/get_file', function(req, res) {
 });
 
 app.get('/get_files', function(req, res) {
-	magic.get_files("joost", "password");
+	console.log(magic.get_files("joost", "password"));
 });
 
 app.get('/new_user', function(req, res) {

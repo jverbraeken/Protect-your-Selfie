@@ -43,7 +43,7 @@ module.exports = {
       query1.on('row', (row) => {
         if (row.password === password_in) {
           const results = [];
-          const query2 = db.get().query("SELECT file_name FROM files WHERE id IN (SELECT associated_file FROM relations WHERE granted_user = $1)", [row.id]);
+          const query2 = db.get().query("SELECT * FROM files WHERE id IN (SELECT associated_file FROM relations WHERE granted_user = $1)", [row.id]);
           query2.on('row', (row2) => {
             results.push(row);
           });
