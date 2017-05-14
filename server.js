@@ -34,11 +34,15 @@ app.get('/dashboard', function(req, res) {
 });
 
 app.get('/get_file', function(req, res) {
-	magic.get_file("joost", "password", "31950dac942c90b96353955d8966", "secret", "file");
+	magic.get_file("joost", "password", "31950dac942c90b96353955d8966", "secret", 1);
 });
 
 app.get('/get_files', function(req, res) {
-	magic.get_files("joost", "password");
+	magic.get_files("joost", "password").then(function(tmp) {
+		console.log(JSON.stringify(tmp));
+		res.send(JSON.stringify(tmp));
+	});
+	//res.send("hoi");
 });
 
 app.get('/new_user', function(req, res) {

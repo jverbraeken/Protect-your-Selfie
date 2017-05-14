@@ -40,14 +40,18 @@ module.exports = {
   get_files: function(username_in, password_in) {
     return new Promise((resolve, reject) => {
       const query1 = db.get().query("SELECT * FROM users WHERE username = $1", [username_in]);
+      console.log("1");
       query1.on('row', (row) => {
         if (row.password === password_in) {
           const results = [];
-          const query2 = db.get().query("SELECT file_name FROM files WHERE id IN (SELECT associated_file FROM relations WHERE granted_user = $1)", [row.id]);
+          console.log("2");
+          const query2 = db.get().query("SELECT * FROM files WHERE id IN (SELECT associated_file FROM relations WHERE granted_user = $1)", [row.id]);
           query2.on('row', (row2) => {
-            results.push(row);
+          console.log("3");
+            results.push(row2);
           });
           query2.on('end', () => {
+          console.log(results);
             resolve(results);
           });
         } else {
