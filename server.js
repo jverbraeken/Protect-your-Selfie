@@ -17,7 +17,6 @@ module.exports = app;
 // Set static source for express
 app.use(express.static(process.cwd() + '/public'));
 app.use(bodyParser.urlencoded({ extended: false }));
-app.use('/', require('./routes/bundle.js'));
 app.use(session({
 	resave: true,
 	saveUninitialized: true,
@@ -25,49 +24,101 @@ app.use(session({
 }));
 app.use(passport.initialize());
 app.use(passport.session());
+app.use('/', require('./routes/bundle.js'));
 
 
 // Simple routes
 app.get('/', function(req, res) {
-	res.sendFile('login.html', {root:'./public'});
+	if(req.user) {
+		if(user.is_organization) {
+			res.redirect('/odashboard');
+		} else {
+			res.redirect('/dashboard')
+		}
+	} else {
+		res.sendFile('index.html', {root:'./public'});
+	}
 });
+
 app.get('/dashboard', function(req, res) {
-	res.sendFile('dashboard.html', {root:'./public/user'});
+	if(req.user && !req.user.is_organization) {
+		res.sendFile('dashboard.html', {root:'./public/user'});
+	} else {
+		res.sendFile('index.html', {root:'./public'});
+	}
 });
 app.get('/documents', function(req, res) {
-	res.sendFile('documents.html', {root:'./public/user'});
+	if(req.user && !req.user.is_organization) {
+		res.sendFile('documents.html', {root:'./public/user'});
+	} else {
+		res.sendFile('index.html', {root:'./public'});
+	}
 });
 app.get('/uploading', function(req, res) {
-	res.sendFile('upload.html', {root:'./public/user'});
+	if(req.user && !req.user.is_organization) {
+		res.sendFile('upload.html', {root:'./public/user'});
+	} else {
+		res.sendFile('index.html', {root:'./public'});
+	}
 });
 app.get('/userx', function(req, res) {
-	console.log("hier");
-	res.sendFile('user.html', {root:'./public/user'});
+	if(req.user && !req.user.is_organization) {
+		res.sendFile('user.html', {root:'./public/user'});
+	} else {
+		res.sendFile('index.html', {root:'./public'});
+	}
 });
 app.get('/viewer', function(req, res) {
-	res.sendFile('viewer.html', {root:'./public/user'});
+	if(req.user && !req.user.is_organization) {
+		res.sendFile('viewer.html', {root:'./public/user'});
+	} else {
+		res.sendFile('index.html', {root:'./public'});
+	}
 });
 app.get('/viewero', function(req, res) {
-	res.sendFile('viewer.html', {root:'./public/organization'});
+	if(req.user && !req.user.is_organization) {
+		res.sendFile('viewer.html', {root:'./public/organization'});
+	} else {
+		res.sendFile('index.html', {root:'./public'});
+	}
 });
-
 
 app.get('/Odashboard', function(req, res) {
-	res.sendFile('dashboard.html', {root:'./public/organization'});
+	if(req.user && req.user.is_organization) {
+		res.sendFile('dashboard.html', {root:'./public/organization'});
+	} else {
+		res.sendFile('index.html', {root:'./public'});
+	}
 });
 app.get('/Odocuments', function(req, res) {
-	res.sendFile('documents.html', {root:'./public/organization'});
+	if(req.user && req.user.is_organization) {
+		res.sendFile('documents.html', {root:'./public/organization'});
+	} else {
+		res.sendFile('index.html', {root:'./public'});
+	}
 });
 app.get('/Ouploading', function(req, res) {
-	res.sendFile('upload.html', {root:'./public/organization'});
+	if(req.user && req.user.is_organization) {
+		res.sendFile('upload.html', {root:'./public/organization'});
+	} else {
+		res.sendFile('index.html', {root:'./public'});
+	}
 });
 app.get('/Ouserx', function(req, res) {
-	console.log("hier");
-	res.sendFile('user.html', {root:'./public/organization'});
+	if(req.user && req.user.is_organization) {
+		res.sendFile('user.html', {root:'./public/organization'});
+	} else {
+		res.sendFile('index.html', {root:'./public'});
+	}
 });
 app.get('/Oviewer', function(req, res) {
-	res.sendFile('viewer.html', {root:'./public/organization'});
+	if(req.user && req.user.is_organization) {
+		res.sendFile('viewer.html', {root:'./public/organization'});
+	} else {
+		res.sendFile('index.html', {root:'./public'});
+	}
 });
+
 
 app.get('/new_user', function(req, res) {
 	query.new_user(req.query.username, req.query.password)

@@ -12,6 +12,7 @@ router.get('/getOwnFiles', function(req, res) {
 });
 
 router.get('/getOtherFiles', function(req, res) {
+	console.log('hier', req.user)
 	query.getUserOtherFiles(req.query.id)
 		.then(data => res.status(200).send(JSON.stringify(data)));
 });

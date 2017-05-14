@@ -9,7 +9,10 @@ passport.use(
 	new LocalStrategy(function(username, password, done) {
     db.authenticateUser(username, password)
       .then(user => done(null, user, 'success'))
-      .catch(() => done(undefined, false, {}));
+      .catch(e => {
+				console.log(e);
+				done(undefined, false, {});
+			});
 	})
 );
 
@@ -18,5 +21,5 @@ passport.serializeUser(function(user, done) {
 });
 
 passport.deserializeUser(function(user, done) {
-  done(null, data);
+  done(null, user);
 });

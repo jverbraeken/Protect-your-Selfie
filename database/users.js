@@ -20,7 +20,7 @@ module.exports.authenticateUser = function(username, password) {
       }
 
       if(user.password === password) {
-        console.log('correct password');
+        // console.log('correct password');
         return resolve(user);
       } else {
         console.warn('incorrect password');
