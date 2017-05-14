@@ -30,5 +30,9 @@ router.post('/grantUsersToFile', function(req, res) {
 		.catch(e => res.status(418).end());
 })
 
+router.post('/grantUsersToFile', function(req, res) {
+  query.grantUsersToFile(req.query.user_id, req.query.file_id, req.query.granted_user_ids, "remove this");
+});
+
 
 module.exports = router;
