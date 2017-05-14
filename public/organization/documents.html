@@ -55,7 +55,7 @@
                 <li>
                     <a href="user.html">
                         <i class="pe-7s-user"></i>
-                        <p>User Profile</p>
+                        <p>Organization Profile</p>
                     </a>
                 </li>
                 <li class="active">
@@ -113,7 +113,7 @@
                                 <h4 class="title">List of uploaded documents</h4>
                             </div>
                             <div class="content table-responsive table-full-width">
-                                <table class="table table-hover table-striped" id="table_documents">
+                                <table class="table table-hover table-striped">
                                     <thead>
                                         <th>Name</th>
                                         <th>Filename</th>
@@ -179,7 +179,7 @@
 
 	<!-- Light Bootstrap Table DEMO methods, don't include it in your project! -->
 	<script src="assets/js/demo.js"></script>
-<script src="script.js"></script>
+
     <script type="text/javascript">
         $(document).ready(function(){
             var splitURL = window.location.search.slice(1).split('&');
@@ -203,6 +203,12 @@
                 });
             }
 
+        });
+
+        var b = document.getElementById('b');
+        var d = document.getElementById('d');
+        b.addEventListener('click', function() {
+        d.classList.toggle('shown');
         });
     </script>
 
