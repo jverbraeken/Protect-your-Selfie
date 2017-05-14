@@ -32,7 +32,7 @@
 </head>
 <body>
 
-<div class="wrapper" id="app">
+<div class="wrapper">
     <div class="sidebar" data-color="blue" data-image="assets/img/sidebar-5.jpg">
 
     <!--   you can change the color of the sidebar using: data-color="blue | azure | green | orange | red | purple" -->
@@ -55,7 +55,7 @@
                 <li>
                     <a href="user.html">
                         <i class="pe-7s-user"></i>
-                        <p>Organization Profile</p>
+                        <p>User Profile</p>
                     </a>
                 </li>
                 <li class="active">
@@ -89,7 +89,7 @@
                 <div class="collapse navbar-collapse">
                     <ul class="nav navbar-nav navbar-right">
                         <li id="upload-button">
-                           <a href="/upload.html">
+                           <a href="">
                                <p>Upload document</p>
                             </a>
                         </li>
@@ -110,42 +110,19 @@
                     <div class="col-md-12">
                         <div class="card">
                             <div class="header">
-                                <h4 class="title">List of uploaded documents</h4>
+                                <h4 class="title">Upload file</h4>
                             </div>
                             <div class="content table-responsive table-full-width">
-                                <table class="table table-hover table-striped">
-                                    <thead>
-                                        <th>Name</th>
-                                        <th>Filename</th>
-                                        <th>Description</th>
-                                    	<th>Uploaded on</th>
-                                    	<th>Who has access</th>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td>Payslip 24-02-17</td>
-                                        	<td>payslip.pdf</td>
-                                            <td>Payslip of the second month of 2017</td>
-                                        	<td>21-03-2017</td>
-                                        	<td>Aegon</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Allergy test</td>
-                                            <td>39352935-test-allgm.csv</td>
-                                            <td>I did an allergy test on the 7th of May</td>
-                                            <td>16-06-2017</td>
-                                            <td>Het Spaarne ziekenhuis, Huisarts Van Oord</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Dyslexia form</td>
-                                            <td>j292j602ksd042kjfa35.docx</td>
-                                            <td>For my dyslexia I have a special form</td>
-                                            <td>25-11-2016</td>
-                                            <td>TU Delft, Huisarts Van Oord</td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-
+                                <form class="box" method="post" action="uploadx" enctype="multipart/form-data">
+                                  <div class="box__input">
+                                    <input class="box__file" type="file" name="theFile" id="file" data-multiple-caption="{count} files selected" multiple/>
+                                    <label for="file"><strong>Choose a file</strong><span class="box__dragndrop"> or drag it here</span>.</label>
+                                    <button class="box__button" type="submit">Upload</button>
+                                  </div>
+                                  <div class="box__uploading">Uploading&hellip;</div>
+                                  <div class="box__success">Done!</div>
+                                  <div class="box__error">Error! <span></span>.</div>
+                                </form>
                             </div>
                         </div>
                     </div>
@@ -180,36 +157,5 @@
 	<!-- Light Bootstrap Table DEMO methods, don't include it in your project! -->
 	<script src="assets/js/demo.js"></script>
 
-    <script type="text/javascript">
-        $(document).ready(function(){
-            var splitURL = window.location.search.slice(1).split('&');
-            if(splitURL[0] == 'success=yes') {
-                $.notify({
-                    icon: 'pe-7s-like2',
-                    message: "Uploading " + splitURL[1].split('docname=')[1] + " was a success!"
-
-                },{
-                    type: 'info',
-                    timer: 4000
-                });
-            } else if(splitURL[0] == 'success=no') {
-                $.notify({
-                    icon: 'pe-7s-close-circle',
-                    message: "Uploading " + splitURL[1].split('docname=')[1] + " was a failure, please try again."
-
-                },{
-                    type: 'warning',
-                    timer: 4000
-                });
-            }
-
-        });
-
-        var b = document.getElementById('b');
-        var d = document.getElementById('d');
-        b.addEventListener('click', function() {
-        d.classList.toggle('shown');
-        });
-    </script>
 
 </html>
