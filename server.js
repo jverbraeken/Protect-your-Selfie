@@ -41,6 +41,10 @@ app.get('/get_files', function(req, res) {
 	magic.get_files("joost", "password");
 });
 
+app.get('/new_user', function(req, res) {
+	magic.new_user(req.query.username, req.query.password);
+});
+
 // Start the server
 app.listen(process.env.PORT, function(err) {
 	if(err) {
