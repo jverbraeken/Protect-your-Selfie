@@ -21,7 +21,6 @@ app.get('/dashboard', function(req, res) {
 	res.sendFile('dashboard.html', {root:'./public'});
 });
 
-
 // Example routes
 app.get('/getfilesforuser1', function(req, res) {
 	query.getUserOwnFiles(1)
