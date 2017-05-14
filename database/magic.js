@@ -20,7 +20,7 @@ module.exports = {
           hash.update(username_in + file);
 
           const nonsense = key_generator.encrypt(key_to_encrypt, secret);
-          postgres.query("INSERT INTO files(file_name, amazon_file) VALUES ($1, $2) RETURNING id", ['filename', hash.digest('hex')], function(err, result) {
+          postgres.query("INSERT INTO files(file_name, amazon_file, description, date_uploaded) VALUES ($1, $2, $3, $4) RETURNING id", ['filename', hash.digest('hex'), 'description', new Date()], function(err, result) {
             if(err) {
               console.log("hoi3");
                 reject();
@@ -62,6 +62,7 @@ module.exports = {
       const query1 = db.get().query("SELECT * FROM users WHERE username = $1", [username_in]);
       query1.on('row', (row) => {
         if (row.password === password_in) {
+          db.get().query("INSERT INTO views(file, viewed_by, date_viewed) VALUES ($1, $2, $3)", [file, row.id, new Date()]);
           const decrypted_key = key_generator.decrypt(nonsense, secret);
           console.log("1");
           const query2 = db.get().query("SELECT amazon_file FROM files WHERE file_name = $1", [file]);
