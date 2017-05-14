@@ -2,7 +2,9 @@
 
 const express = require('express');
 const db = require('./database/db.js');
+const passport = require('passport');
 const query = require('./database/query.js');
+const session = require('express-session');
 db.connect();
 
 
@@ -14,6 +16,13 @@ module.exports = app;
 // Set static source for express
 app.use(express.static(process.cwd() + '/public'));
 app.use('/', require('./routes/bundle.js'));
+app.use(session({
+	resave: true,
+	saveUninitialized: true,
+	secret: "kappa"
+}));
+app.use(passport.initialize());
+app.use(passport.session());
 
 
 // Simple routes

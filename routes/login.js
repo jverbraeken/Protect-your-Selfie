@@ -10,6 +10,7 @@ router.use(bodyParser.urlencoded({ extended: true }));
 router.post('/login', passport.authenticate('local', function(err, user, info) {
 	if(user) {
 		req.logIn(user, function(err) {
+			console.log(err, user, info);
 			if(err) {
 				return;
 			}
