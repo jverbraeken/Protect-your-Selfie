@@ -33,6 +33,9 @@ app.get('/userx', function(req, res) {
 app.get('/viewer', function(req, res) {
 	res.sendFile('viewer.html', {root:'./public/user'});
 });
+app.get('/viewero', function(req, res) {
+	res.sendFile('viewer.html', {root:'./public/organization'});
+});
 
 
 app.get('/Odashboard', function(req, res) {
