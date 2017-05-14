@@ -10303,8 +10303,38 @@ setTimeout(function () {
 }, 0);
 
 module.exports = Vue;
-}).call(this,require("e/U+97"))
-},{"e/U+97":1}],3:[function(require,module,exports){
+}).call(this,require("9FoBSB"))
+},{"9FoBSB":1}],3:[function(require,module,exports){
+"use strict"
+
+const Vue = require('vue');
+
+var app = new Vue({
+	el: '#clientListTable',
+	data: {
+		clients: [
+			{
+				name: "Mike Andrew"
+			},
+			{
+				name: "Eric Cornelsisen"
+			},
+			{
+				name: "Joost Verbraeken"
+			},
+			{
+				name: "CooleCornel"
+			}
+		]
+	},
+	methods: {
+		showPopup: function() {
+			
+		}
+	}
+});
+console.log(app.clients)
+},{"vue":2}],4:[function(require,module,exports){
 "use strict"
 
 const Vue = require('vue');
@@ -10314,9 +10344,23 @@ document.addEventListener('DOMContentLoaded', function() {
 		el: '#app',
 		data: {
 			title: 'Hello Vue!',
-			text: 'Lorem ipsum dolor'
+			text: 'Lorem ipsum dolor',
+			filename: 'filename'
+		},
+		methods: {
+			showPopup: function() {
+				
+			}
 		}
 	});
+
+	console.log(window.url);
+	app.showPopup();
 });
 
-},{"vue":2}]},{},[3])
+},{"vue":2}],5:[function(require,module,exports){
+"use strict"
+
+require('./documents.js');
+require('./clientList.js');
+},{"./clientList.js":3,"./documents.js":4}]},{},[5])

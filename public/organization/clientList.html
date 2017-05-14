@@ -25,6 +25,7 @@
     <link href="assets/css/demo.css" rel="stylesheet" />
 
 
+
     <!--     Fonts and icons     -->
     <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
     <link href='http://fonts.googleapis.com/css?family=Roboto:400,700,300' rel='stylesheet' type='text/css'>
@@ -101,7 +102,7 @@
 
         <div class="content">
             <div class="container-fluid">
-                <div class="row">
+                <div class="row" id="clientListTable">
                     <div class="col-md-12">
                         <div class="card">
                             <div class="header">
@@ -115,30 +116,10 @@
                                         <th>Link to full profile</th>
                                     </thead>
                                     <tbody>
-                                        <tr>
-                                            <td>Mike Andrew</td>
-                                        	<td>21-03-2017</td>
-                                        	<td><a href="clientProfile.html">To full profile</a></td>
-                                        </tr>
-                                        <tr>
-                                            <td>Eric Cornelissen</td>
-                                            <td>27-02-2017</td>
-                                            <td><a href="clientProfile.html">To full profile</a></td>
-                                        </tr>
-                                        <tr>
-                                            <td>Jody Liu</td>
-                                            <td>19-04-2017</td>
-                                            <td><a href="clientProfile.html">To full profile</a></td>
-                                        </tr>
-                                        <tr>
-                                            <td>Joost Verbreaken</td>
-                                            <td>05-01-2017</td>
-                                            <td><a href="clientProfile.html">To full profile</a></td>
-                                        </tr>
-                                        <tr>
-                                            <td>Cornel de Vroomen</td>
-                                            <td>15-11-2016</td>
-                                            <td><a href="clientProfile.html">To full profile</a></td>
+                                        <tr v-for="client in clients">
+                                            <td>{{client.name}}</td>
+                                        	<td>{{client.dateSince}}</td>
+                                        	<td><a href="clientProfile.html">{{client.link}}</a></td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -201,12 +182,8 @@
             }
 
         });
-
-        var b = document.getElementById('b');
-        var d = document.getElementById('d');
-        b.addEventListener('click', function() {
-        d.classList.toggle('shown');
-        });
     </script>
+
+    <script src="script.js"></script>
 
 </html>
