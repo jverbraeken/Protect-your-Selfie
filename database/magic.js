@@ -3,6 +3,7 @@
 const db = require('./db.js');
 const key_generator = require('../keys.js');
 const crypto = require('crypto');
+const aws = require('../database/aws-files.js');
 
 let hash = crypto.createHash('sha256');
 
@@ -19,7 +20,7 @@ module.exports = {
             let hash = crypto.createHash('sha256');
             hash.update(username + filename);
 
-            key_generator.generate_key().then(key => {
+            key_generator.generate_key().then(key => {console.log(key);
                 let new_filename = hash.digest('hex');
                 let new_filecontent = key_generator.encrypt(filecontent, key);
                 let nonsense = key_generator.encrypt(key, secret);
@@ -44,7 +45,7 @@ module.exports = {
                                 return reject();
                             }
 
-                            resolve(new_filecontent);
+                            aws.upload(new_filename, new_filecontent).then(resolve).catch(reject);
                         });
                     });
                 });
@@ -52,7 +53,7 @@ module.exports = {
         });
     },
 
-    getFile: function(filename, username, secert) {
+    getFile: function(filename, username, secret) {
         let postgres = db.get();
         return new Promise((resolve, reject) => {
             postgres.query(GET_USER_QUERY, [username], function(err, res) {
@@ -68,6 +69,7 @@ module.exports = {
                         return reject();
                     }
 
+                    let amazon_file = res.rows[0].amazon_file;
                     let file_id = res.rows[0].id;
                     postgres.query(GET_NONSENSE, [user_id, file_id], function(err, res) {
                         if(err) {
@@ -76,7 +78,11 @@ module.exports = {
                         }
 
                         let nonsense = res.rows[0].encrypted_key;
-                        console.log(nonsense);
+                        let key = key_generator.decrypt(nonsense, secret);
+                        aws.download(amazon_file)
+                            .then(file_content => key_generator.decrypt(file_content, key))
+                            .then(resolve)
+                            .catch(reject);
                     });
                 });
             });

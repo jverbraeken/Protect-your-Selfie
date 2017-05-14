@@ -27,6 +27,6 @@ module.exports.download = function(filename) {
 			Key: filename
 		};
 
-		s3.getObject(params, (err, res) => err ? reject(err) : resolve(res.Body));
+		s3.getObject(params, (err, res) => err ? reject(err) : resolve(res.Body.toString()));
 	});
 };
