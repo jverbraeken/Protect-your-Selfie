@@ -2802,6 +2802,12 @@ body > .navbar-collapse {
   .table-responsive {
     overflow: visible; }
 
+  #table-scroll {
+  height:150px;
+  overflow:auto;  
+  margin-top:20px;
+  }
+
   .navbar-nav p {
     line-height: normal;
     margin: 0; } }
