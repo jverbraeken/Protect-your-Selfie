@@ -6,8 +6,8 @@ const express = require('express');
 let router = express.Router();
 
 
-router.get('/download/:id', function(req, res) {
-	let file_id = req.params.id;
+router.get('/download', function(req, res) {
+	let file_id = req.query.id;
 	aws.getFile(file_id, "eric", "mysecret")
 		.then(file => {
 			res.setHeader('Content-disposition', 'attachment; filename=' + file.name);
