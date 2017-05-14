@@ -276,13 +276,13 @@
                         <div class="content">
             <div class="container-fluid">
                 <div class="row">
-                    <div class="col-md-12">
+                    <div class="col-md-12" id="dashboard-user-recently-viewed-files">
                         <div class="card">
                             <div class="header">
                                 <h4 class="title">Recently viewed files</h4>
                                 <p class="category">Organizations who have recently viewed your files.</p>
                             </div>
-                            <div class="content table-responsive table-full-width">
+                            <div class="content table-responsive table-full-width" id="user-dashboard">
                                 <table class="table table-hover table-striped">
                                     <thead>
                                         <th>ID</th>
@@ -292,47 +292,12 @@
                                         <th>Date and time</th>
                                     </thead>
                                     <tbody>
-                                        <tr>
-                                            <td>1</td>
-                                            <td>Aegon</td>
-                                            <td>Transaction payments April 2017</td>
-                                            <td>PDF</td>
-                                            <td>05/13/2017 08:32:04</td>
-                                        </tr>
-                                        <tr>
-                                            <td>2</td>
-                                            <td>TU Delft</td>
-                                            <td>Grades 2016-2017</td>
-                                            <td>PDF</td>
-                                            <td>05/13/2017 08:01:45</td>
-                                        </tr>
-                                        <tr>
-                                            <td>3</td>
-                                            <td>Aegon</td>
-                                            <td>Transaction payments April 2017</td>
-                                            <td>PDF</td>
-                                            <td>05/10/2017 21:22:12</td>
-                                        </tr>
-                                        <tr>
-                                            <td>4</td>
-                                            <td>Philips Electronics B.V.</td>
-                                            <td>Resumé pitch</td>
-                                            <td>MP4</td>
-                                            <td>05/10/2017 10:23:12</td>
-                                        </tr>
-                                        <tr>
-                                            <td>5</td>
-                                            <td>Thuiszorg Inis</td>
-                                            <td>Medication prescriptions 2017</td>
-                                            <td>XLS</td>
-                                            <td>03/08/2017 18:22:43</td>
-                                        </tr>
-                                        <tr>
-                                            <td>6</td>
-                                            <td>Spaarne ziekenhuis</td>
-                                            <td>Medication prescriptions 2017</td>
-                                            <td>XLS</td>
-                                            <td>02/08/2017 11:59:01</td>
+                                        <tr v-for="file in files">
+                                            <td>{{file.number}}</td>
+                                            <td>{{file.institution}}</td>
+                                            <td>{{file.description}}</td>
+                                            <td>{{file.type}}</td>
+                                            <td>{{file.timestamp}}</td>
                                         </tr>
                                     </tbody>
                                 </table>

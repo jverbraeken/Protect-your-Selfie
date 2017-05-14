@@ -29,6 +29,6 @@ CREATE TABLE views (
 );
 
 CREATE TABLE user_to_organization (
-	user_id				serial references users(id),
-	organization	serial references users(id)
+	user_id					serial references users(id),
+	organization_id	serial references users(id)
 );

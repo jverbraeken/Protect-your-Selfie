@@ -13,6 +13,8 @@ const GRANT_USER_TO_FILE = "INSERT INTO user_to_file(file_owner, granted_user, a
 const GET_NONSENSE = "SELECT nonsense FROM user_to_file WHERE file_owner = $1 AND associated_file = $2";
 const GET_ORGANIZATIONS_OF_USER = "SELECT id, name FROM users WHERE id IN (SELECT organization_id FROM user_to_organization WHERE user_id = $1)";
 const GET_USERS_OF_ORGANIZATION = "SELECT id, name FROM users WHERE id IN (SELECT user_id FROM user_to_organization WHERE organization_id = $1)";
+const GET_RECENTLY_VIEWED_FILES = "SELECT ROW_NUMBER() OVER (ORDER BY views.date_viewed) AS number, user AS institution, description, RIGHT(file_name, 3) AS type, date_uploaded AS timestamp FROM views JOIN files ON views.file = files.id JOIN user_to_file ON user_to_file.associated_file = files.id WHERE file_owner = $1";
+
 
 module.exports.getUserOwnFiles = function(id) {
   let postgres = db.get();
@@ -123,6 +125,21 @@ module.exports.getUsersOfOrganization = function(organization_id) {
 
       let users = res.rows.map(user => ({id: user.id, name: user.name}));
       resolve(users);
+    });
+  });
+}
+
+module.exports.getRecentlyViewedFiles = function(user_id) {
+  return new Promise((resolve, reject) => {
+    db.get().query(GET_RECENTLY_VIEWED_FILES, [user_id], function(err, res) {
+      if (err) {
+        console.error(err);
+        return reject();
+      }
+
+      let files = res.rows.map(file => ({number: file.number, institution: file.institution,
+      description: file.description, type: file.type, timestamp: file.timestamp}));
+      resolve(files);
     });
   });
 }
