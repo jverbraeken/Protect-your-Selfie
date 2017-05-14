@@ -12,7 +12,7 @@ const EVOKE_ALL_USERS_FROM_FILE = "DELETE FROM user_to_file WHERE file_owner = $
 const GRANT_USER_TO_FILE = "INSERT INTO user_to_file(file_owner, granted_user, associated_file, nonsense) VALUES ($1, $2, $3, $4)";
 const GET_NONSENSE = "SELECT nonsense FROM user_to_file WHERE file_owner = $1 AND associated_file = $2";
 const GET_ORGANIZATIONS_OF_USER = "SELECT id, name FROM users WHERE id IN (SELECT organization_id FROM user_to_organization WHERE user_id = $1)";
-const GET_ORGANIZATIONS_OF_USER = "SELECT id, name FROM users WHERE id IN (SELECT user_id FROM user_to_organization WHERE organization_id = $1)";
+const GET_USERS_OF_ORGANIZATION = "SELECT id, name FROM users WHERE id IN (SELECT user_id FROM user_to_organization WHERE organization_id = $1)";
 
 module.exports.getUserOwnFiles = function(id) {
   let postgres = db.get();
