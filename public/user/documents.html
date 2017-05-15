@@ -135,11 +135,11 @@
                                                                 <div class="button-group">
                                                                     <button type="button" class="btn btn-default btn-sm dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-cog"></span> <span class="caret"></span></button>
                                                                     <ul class="dropdown-menu">
-                                                                      <li><a href="#" class="small" data-value="Aegon" tabIndex="-1"><input type="checkbox"/>&nbsp;Aegon</a></li>
-                                                                      <li><a href="#" class="small" data-value="Spaarne ziekenhuis" tabIndex="-1"><input type="checkbox"/>&nbsp;Spaarne ziekenhuis</a></li>
-                                                                      <li><a href="#" class="small" data-value="Huisarts van Oord" tabIndex="-1"><input type="checkbox"/>&nbsp;Huisarts van Oord</a></li>
-                                                                      <li><a href="#" class="small" data-value="TU Delft" tabIndex="-1"><input type="checkbox"/>&nbsp;TU Delft</a></li>
-                                                                      <li><a href="#" class="small" data-value="NS" tabIndex="-1"><input type="checkbox"/>&nbsp;NS</a></li>
+                                                                      <li><a href="#" class="small" data-value="Aegon" tabIndex="-1"><label><input type="checkbox"/>&nbsp;Aegon</label></a></li>
+                                                                      <li><a href="#" class="small" data-value="Spaarne ziekenhuis" tabIndex="-1"><label><input type="checkbox"/>&nbsp;Spaarne ziekenhuis</label></a></li>
+                                                                      <li><a href="#" class="small" data-value="Huisarts van Oord" tabIndex="-1"><label></label><input type="checkbox"/>&nbsp;Huisarts van Oord</label></a></li>
+                                                                      <li><a href="#" class="small" data-value="TU Delft" tabIndex="-1"><label></label><input type="checkbox"/>&nbsp;TU Delft</label></a></li>
+                                                                      <li><a href="#" class="small" data-value="NS" tabIndex="-1"><label><input type="checkbox"/>&nbsp;NS</label></a></li>
                                                                   </ul>
                                                                 </div>
                                                             </div>
@@ -221,7 +221,11 @@
         var b = document.getElementById('b');
         var d = document.getElementById('d');
         b.addEventListener('click', function() {
-        d.classList.toggle('shown');
+            d.classList.toggle('shown');
+        });
+
+        $('input, label').on('click', function(e){
+            e.stopPropagation();
         });
     </script>
 
