@@ -4,7 +4,7 @@ const db = require('./db.js');
 const keys = require("../keys.js");
 
 const GET_USER_OWN_FILES = "SELECT id, file_name, amazon_file, description, date_uploaded FROM files WHERE id IN (SELECT associated_file FROM user_to_file WHERE file_owner = $1)"
-const GET_USER_OTHER_FILES = "SELECT id, file_name, amazon_file, description, date_uploaded FROM files WHERE id IN (SELECT associated_file FROM user_to_file WHERE granted_user = $1)"
+const GET_USER_OTHER_FILES = "SELECT id, file_name AS name, description, RIGHT(file_name, 3) AS type, date_uploaded AS timestamp FROM files WHERE id IN (SELECT associated_file FROM user_to_file WHERE granted_user = $1)"
 const ADD_NEW_VIEW = "INSERT INTO views(file, viewed_by, date_viewed) VALUES ($1, $2, $3)";
 const GET_FILE = "SELECT amazon_file FROM files WHERE file_name = $1";
 const GET_ALL_USERS = "SELECT id, name FROM users";
@@ -40,7 +40,7 @@ module.exports.getUserOtherFiles = function(id) {
         return reject();
       }
 
-      let files = res.rows.map(file => ({id: file.id, name: file.file_name, amazon: file.amazon_file, description: file.description, date: date_uploaded}));
+      let files = res.rows.map(file => ({id: file.id, name: file.name, description: file.description, type: file.type, timestamp: file.timestamp}));
       resolve(files);
     });
   });
@@ -89,11 +89,6 @@ module.exports.grantUsersToFile = function(user_id, file_id, granted_user_ids, s
         const key = keys.decrypt(nonsense, secret);
         granted_user_ids[0].forEach(granted_user_id => {
           const new_nonsense = keys.encrypt(key, secret);
-          console.log(user_id);
-          console.log(granted_user_id);
-          console.log(file_id);
-          console.log(new_nonsense);
-          console.log('---')
           db.get().query(GRANT_USER_TO_FILE, [user_id, granted_user_id, file_id, new_nonsense]);
         });
       });
