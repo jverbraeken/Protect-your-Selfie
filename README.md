@@ -20,6 +20,11 @@ Then create `.env` file in the root of the project with the following key-value 
 DATABASE_URL=postgresql://USERNAME:PASSWORD@localhost/DATABASE_NAME
 ENVIRONMENT=development <OR> production
 PORT=port number to run on (e.g. 7000)
+
+AWS_REGION=the AWS region, see http://docs.aws.amazon.com/general/latest/gr/rande.html#apigateway_region
+AWS_BUCKET_NAME=the name of the AWS bucket
+AWS_ACCESS_KEY_ID=your AWS access key
+AWS_SECRET_ACCESS_KEY=your AWS secret access key
 ```
 
 Then install the dependencies:

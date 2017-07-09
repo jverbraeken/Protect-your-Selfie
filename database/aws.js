@@ -56,7 +56,7 @@ module.exports = {
                         return reject();
                     }
 
-                    let file_id = res.rows[0].id;console.log(username);
+                    let file_id = res.rows[0].id;
                     postgres.query(GET_USER_QUERY, [username], function(err, res) {
                         if(err) {
                             console.error(err);
@@ -81,7 +81,7 @@ module.exports = {
     getFile: function(file_id, user_id, secret) {
         let postgres = db.get();
         return new Promise((resolve, reject) => {
-						postgres.query(INSERT_VIEWED, [file_id, user_id, new Date()]);
+            postgres.query(INSERT_VIEWED, [file_id, user_id, new Date()]);
             postgres.query(GET_FILE_QUERY, [file_id], function(err, res) {
                 if(err) {
                     console.error(err);
@@ -104,6 +104,6 @@ module.exports = {
                         .catch(reject);
                 });
             });
-				});
+        });
     }
 }
