@@ -27,5 +27,16 @@ router.post('/login', function(req, res, next) {
 	})(req, res, next);
 });
 
+router.get('/logout', function(req, res) {
+	if(req.user) {
+		console.warn('no active session while trying to log out');
+	} else {
+		log.unauthorizedRequest(req);
+	}
+
+	req.logout();
+	res.redirect('/');
+});
+
 
 module.exports = router;
