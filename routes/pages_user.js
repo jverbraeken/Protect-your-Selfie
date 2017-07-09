@@ -29,7 +29,7 @@ router.get('/uploading', function(req, res) {
 	}
 });
 
-router.get('/user', function(req, res) {
+router.get('/user_details', function(req, res) {
 	if(req.user && !req.user.is_organization) {
 		res.sendFile('user.html', {root:'./public/user'});
 	} else {
