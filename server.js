@@ -27,7 +27,7 @@ app.use(passport.session());
 app.use('/', require('./routes/bundle.js'));
 
 
-// Simple routes
+// Home route
 app.get('/', function(req, res) {
 	if(req.user) {
 		if(user.is_organization) {
@@ -40,106 +40,6 @@ app.get('/', function(req, res) {
 	}
 });
 
-app.get('/dashboard', function(req, res) {
-	if(req.user && !req.user.is_organization) {
-		res.sendFile('dashboard.html', {root:'./public/user'});
-	} else {
-		res.sendFile('index.html', {root:'./public'});
-	}
-});
-app.get('/documents', function(req, res) {
-	if(req.user && !req.user.is_organization) {
-		res.sendFile('documents.html', {root:'./public/user'});
-	} else {
-		res.sendFile('index.html', {root:'./public'});
-	}
-});
-app.get('/uploading', function(req, res) {
-	if(req.user && !req.user.is_organization) {
-		res.sendFile('upload.html', {root:'./public/user'});
-	} else {
-		res.sendFile('index.html', {root:'./public'});
-	}
-});
-app.get('/userx', function(req, res) {
-	if(req.user && !req.user.is_organization) {
-		res.sendFile('user.html', {root:'./public/user'});
-	} else {
-		res.sendFile('index.html', {root:'./public'});
-	}
-});
-app.get('/viewer', function(req, res) {
-	if(req.user && !req.user.is_organization) {
-		res.sendFile('viewer.html', {root:'./public/user'});
-	} else {
-		res.sendFile('index.html', {root:'./public'});
-	}
-});
-app.get('/viewero', function(req, res) {
-	if(req.user && !req.user.is_organization) {
-		res.sendFile('viewer.html', {root:'./public/organization'});
-	} else {
-		res.sendFile('index.html', {root:'./public'});
-	}
-});
-
-app.get('/odashboard', function(req, res) {
-	if(req.user && req.user.is_organization) {
-		res.sendFile('dashboard.html', {root:'./public/organization'});
-	} else {
-		res.sendFile('index.html', {root:'./public'});
-	}
-});
-app.get('/odocuments', function(req, res) {
-	if(req.user && req.user.is_organization) {
-		res.sendFile('documents.html', {root:'./public/organization'});
-	} else {
-		res.sendFile('index.html', {root:'./public'});
-	}
-});
-app.get('/ouploading', function(req, res) {
-	if(req.user && req.user.is_organization) {
-		res.sendFile('upload.html', {root:'./public/organization'});
-	} else {
-		res.sendFile('index.html', {root:'./public'});
-	}
-});
-app.get('/ouserx', function(req, res) {
-	if(req.user && req.user.is_organization) {
-		res.sendFile('user.html', {root:'./public/organization'});
-	} else {
-		res.sendFile('index.html', {root:'./public'});
-	}
-});
-app.get('/oviewer', function(req, res) {
-	if(req.user && req.user.is_organization) {
-		res.sendFile('viewer.html', {root:'./public/organization'});
-	} else {
-		res.sendFile('index.html', {root:'./public'});
-	}
-});
-app.get('/oclientList', function(req, res) {
-	if(req.user && req.user.is_organization) {
-		res.sendFile('clientList.html', {root:'./public/organization'});
-	} else {
-		res.sendFile('index.html', {root:'./public'});
-	}
-});
-
-app.get('/oclientProfile', function(req, res) {
-	if(req.user && req.user.is_organization) {
-		res.sendFile('clientProfile.html', {root:'./public/organization'});
-	} else {
-		res.sendFile('index.html', {root:'./public'});
-	}
-});
-
-
-app.get('/new_user', function(req, res) {
-	query.new_user(req.query.username, req.query.password)
-		.then(() => res.status(200).end())
-		.catch(() => res.status(418).end());
-});
 
 // Start the server
 app.listen(process.env.PORT, function(err) {
